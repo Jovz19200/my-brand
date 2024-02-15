@@ -1,0 +1,33 @@
+body{
+    font: 20px/1.5 Arial, Helvetica, sans-serif ;
+    background-color: #2E1E1E;
+    color: white;
+    
+}
+/* Global */
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+ul{
+    margin: 0px;
+    padding: 0px;
+}
+/* Header */
+
+header a{
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+    text-decoration: none;
+    
+}
+header li{
+    float: left;
+    text-decoration: none;
+    list-style-type: none;
+}
+header nav{
+    float: right;
+}
