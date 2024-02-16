@@ -1,33 +1,157 @@
 body{
-    font: 20px/1.5 Arial, Helvetica, sans-serif ;
+    font: 15px/1.5 Arial, Helvetica, sans-serif ;
     background-color: #2E1E1E;
     color: white;
     
 }
 /* Global */
 .container{
-    width: 80%;
+    width: 70%;
     margin: auto;
     overflow: hidden;
 }
-ul{
-    margin: 0px;
-    padding: 0px;
-}
 /* Header */
 
-header a{
-    float: left;
-    display: inline;
-    padding: 0 20px 0 20px;
-    text-decoration: none;
+nav {
+    width: 100%;
+    margin: auto;
+    font-size: 20px;
+    padding-top: 30px;
+    min-height: 50px;
+    border-bottom: #d9d9d9 1px solid ;
     
 }
-header li{
-    float: left;
+nav a{
     text-decoration: none;
-    list-style-type: none;
+    text-transform: uppercase;
+    color: #ffffff;
 }
-header nav{
-    float: right;
+nav ul{
+    padding: 0;
+    margin: 0;
+}
+nav li{
+    float: left;
+    display: inline;
+    padding: 0 20px 0 0;
+}
+.container nav li{
+    align-items: center;
+}
+
+
+/* Home */
+
+.span-1{
+    color: #85C249;
+}
+.span-2{
+    color: #FF2416;
+}
+.span-3{
+    color:#496BC2;
+}
+.span-4{
+    color:#FAFF0A;
+}
+.span-5{
+    color: #29ABCA;
+}
+
+#home .main-1{
+    display: flex;
+    justify-content: space-between;
+
+}
+#home h2{
+    font-size: 40px;
+}
+.bio{
+    width: 70%;
+}
+.bio p{
+    font-size: 20px;
+}
+
+/* About */
+#about h1{
+    text-align: center;
+}
+.flex_about{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.about_content{
+    padding-left: 30px;
+}
+.about_content p{
+    font-size: 20px;
+    margin: 0;
+}
+/* .image-container {
+    width: 600px;
+    height: 400px;
+  } */
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .about_content button{
+    margin-top: 30px;
+    background-color: #FFF50F;
+    border: none;
+    border-radius: 5px;
+    height:30px;
+    margin: auto;
+  }
+  #myresume{
+    margin: auto;
+  }
+
+  /* Skills  */
+ #skills h1{
+    text-align: center;
+ } 
+ #skills h2{
+    font-weight: bold;
+ }
+ #skills .Languages{
+    width: 80%;
+    margin: auto;
+ }
+ #skills .container h4{
+    font-weight: bold;
+ }
+ #skills .flex_languages button{
+    background-color: #4E3F3F;
+    border: #d9d9d9 1px solid;
+    border-radius: 5px;
+    width: 20%;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 30px 10px 0px;
+    color: #ffffff;
+ }
+ #skills .flex_technologies button{
+    background-color: #4E3F3F;
+    border: #d9d9d9 1px solid;
+    border-radius: 5px;
+    width: 20%;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 30px 10px 0px;
+    color: #ffffff;
+ }
+ #skills .flex_interests button{
+    background-color: #4E3F3F;
+    border: #d9d9d9 1px solid;
+    border-radius: 5px;
+    width: 20%;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 30px 10px 0px;
+    color: #ffffff;
+ }
+ /* Portfolio */
+#portfolio h1{
+    text-align: center;
 }

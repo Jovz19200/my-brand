@@ -7,9 +7,8 @@
     <title>Personal website</title>
 </head>
 <body>
-        <header>
+        <nav>
             <div class="container">
-                <nav>
                     <ul>
                         <li> <a href="index.html">Home</a></li>
                         <li> <a href="index.html">About</a></li>
@@ -19,41 +18,42 @@
                         <li> <a href="index.html">Contact</a></li>
                         <li> <a href="index.html">Login</a></li>
                     </ul>
-                </nav>
-               
+                               
             </div>
-        </header>
+        </nav>
     
     <section id="home">
         <div class="container">
+            <main class="main-1">
             <div class="bio">
-                <h1>&lt;p&gt;Hello There, &lt;br/&gt; I am Jehovanis Habarurema&lt;/p&gt;</h1>
-                <h2>A Software Engineer </h2>
+                <h1><span class="span-1">&lt;p&gt;</span><span class="span-2">Hello There</span> <span class="span-1">&lt;br/&gt;</span><span class="span-4"> I am </span><span class="span-3">Jehovanis Habarurema</span>  <span class="span-1">&lt;/p&gt;</span></h1>
+                <h2>A Software <span class="span-5">Engineer</span> </h2>
                 <p>I am a fast learner who is always pushing
                     the limits to explore more tech skills, 
                     and I enjoy working in a team. My goal is to become 
                     a more proficient multi-disciplinary and versatile software engineer
-                     in solving most pressingproblems and challenges in real world.</p>
-                
+                    in solving most pressingproblems and challenges in real world.
+                </p>                
             </div>
             <div class="profile_picture">
                 <img src="images/Jehovanis_prof_pic-removebg-preview.png" alt="Profile picture"/>
             </div>
+        </main>
         </div>
     </section>
     <!-- About section -->
     <section id="about">
         <div class="container">
-            <div><h1>&lt;About Me /&gt;</h1></div>
+            <div><h1> <span class="span-5">&lt;About Me /&gt;</span></h1></div>
             <div class="flex_about">
-                <div>
+                <div class="image-container">
                     <img src="images/solo dev.jpg" alt="about page photo">
                 </div>
                 <div class="about_content">
                     <p>An Ambitious and curious front-end + back-end 
                         developer growing in the sophisticated field of software development.</p>
                     <p>I enjoy both solo project and Team project</p>
-                    <button id="myresume">My Resume <i>Download</i></button>
+                    <div id="myresume"><button >My Resume <i>Download</i></button></div>
                 </div>
             </div>
 
@@ -63,14 +63,14 @@
     <section id="skills">
         <div class="container">
             <div>
-                <h1>&lt;Skills /&gt;</h1>
+                <h1><span class="span-5">&lt;Skills /&gt;</span></h1>
             </div>
             <div>
                 <h2>Tech Stack</h2>
             </div>
-            <div>
+            <div class="Languages">
                 <h4>Languages</h4>
-            </div>
+            
             <div class="flex_languages">
                 <div class="first_colmn">
                     <button>&lt;C++/&gt;</button>
@@ -89,36 +89,36 @@
                 </div>
                 
             </div>
-            <div>
+        </div>
+            <div class="Languages">
                 <h4>Tools and Technologies</h4>
-            </div>
+            
             <div class="flex_technologies">
                 <div class="first_colmn">
                     <button><i>icon</i> React js</button>
                     <button><i>icon</i> Redux</button>
+                    <button><i>icon</i> Node Js</button>
                 </div>
                 <div class="second_colmn">
                     <button><i>icon</i> Django</button>
-                    <button><i>icon</i> Github</button>   
+                    <button><i>icon</i> Github</button>  
+                    <button><i>icon</i> Tailwind</button> 
                 </div>
-                <div class="third_colmn">
-                    <button><i>icon</i> Node Js</button>
-                    <button><i>icon</i> Tailwind</button>   
-                </div>
+    
                 
             </div>
-            <div>
+        </div>
+            <div class="Languages">
                 <h4>Interests &amp; Drives</h4>
-            </div>
+           
             <div class="flex_interests">
                 <div class="first_colmn">
                     <button>Problem Solving <i>icon</i></button>
-                </div>
-                <div class="second_colmn">
                     <button>Innovation <i>icon</i></button>
                 </div>
+            
             </div>
-
+        </div>
         </div>
 
     </section>
@@ -126,7 +126,7 @@
     <section id="portfolio">
         <div class="container">
             <div>
-                <h1>&lt; Portfolio /&gt;</h1>
+                <h1><span class="span-5">&lt; Portfolio /&gt;</span></h1>
             </div>
             <div class="flex_portfolio">
                 <div class="port_1">
