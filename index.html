@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/79b8b085c2.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@latest/iconify.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@latest/iconify.min.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css" />
     <title>Personal website</title>
@@ -13,7 +13,7 @@
         <h1 class="title">My Personal website</h1> 
         <i class="fa-solid fa-bars"></i> 
     </div>
-        <nav>
+        <nav id="nav">
             <!-- <div class="container"> -->
                 
                  
@@ -25,10 +25,16 @@
                         <li> <a href="#portfolio">Portfolio</a></li>
                         <li> <a href="#blog">Blog</a></li>
                         <li> <a href="#contact">Contact</a></li>
-                        <li> <a href="index.html">Login<Span>   </Span><i class="fa fa-sort-desc" aria-hidden="true"></i></a></li>
+                        <li> <a href="admin_panel/login.html">Login </a> 
+                            <!-- <i class="fa fa-sort-desc" aria-hidden="true"></i> -->
+    
+                        </li>
                     </ul>
                              
             <!-- </div> -->
+            <!-- <select name="dropdown">
+                <option value="sign_in">Sign in</option>
+            </select> -->
         </nav>
 
         
@@ -152,10 +158,10 @@
                 <h1><span class="span-5">&lt; Portfolio /&gt;</span></h1>
             </div>
             <div class="flex_portfolio">
-                <div class="port_1">
+                <a href="./blog.html"><div class="port_1">
                     <img src="images/tech 2.jpg" alt="portfolio thumbnail 1">
                     <p>E-commerce Web apps</p>
-                </div>
+                </div></a>
                 <div class="port_2">
                     <img src="images/team.jpg" alt="portfolio thumbnail 2">
                     <p>ALX software Engineer</p>
@@ -171,16 +177,22 @@
         </div>
         <div class="flex_blog">
             <div class="blog_1">
-                <img src="images/blog 1.jpg" alt="blog thumbnail 1">
-                <p>Tech for starters</p>
+                <a href="blog.html">
+                    <img src="images/blog 1.jpg" alt="blog thumbnail 1">
+                    <p>Tech for starters</p>
+                </a>
             </div>
             <div class="blog_1">
-                <img src="images/blog 2.jpg" alt="blog thumbnail 2">
-                <p>Software Development tools, you must know</p>
+                <a href="blog.html">
+                    <img src="images/blog 2.jpg" alt="blog thumbnail 2">
+                    <p>Software Development tools, you must know</p>
+                </a>
             </div>
             <div class="blog_1">
-                <img src="images/blog 3.jpg" alt="blog thumbnail 3">
-                <p>How much $$ a software developer earn per year in 2024.</p>
+                <a href="bl">
+                    <img src="images/blog 3.jpg" alt="blog thumbnail 3">
+                    <p>How much $$ a software developer earn per year in 2024.</p>
+                </a>
             </div>
         </div>
     </div>
@@ -235,7 +247,7 @@
                     </div>
                     <div class="third_colmn">
         
-                            <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
+                            <a href="#home"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
                         
                     </div>
                 </div>

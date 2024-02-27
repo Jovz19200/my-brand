@@ -34,7 +34,7 @@ input, select{
 }
 
 
-nav{
+#nav{
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -45,6 +45,7 @@ nav{
     border-bottom: #d9d9d9 1px solid;
     
 }
+
 nav a{
     text-decoration: none;
     /* text-transform: uppercase; */
@@ -58,10 +59,13 @@ nav ul{
 nav li{
     float: left;
     display: inline;
-    padding: 0 80px 0 0;
+    padding: 0 20% 0 0;
 }
 .container nav li{
     align-items: center;
+}
+.dropdown{
+    display: none;
 }
 
 
@@ -204,7 +208,7 @@ nav li{
 }
 
 
-/* Blog */
+/* Blog section */
 
 #blog h1{
     margin-top: 30px;
@@ -221,6 +225,49 @@ nav li{
     width: 100%;
     height: 200px;
     object-fit: cover;
+}
+ /* Blog page */
+ article{
+    width: 90%;
+    min-height: 100vh;
+    border-radius: 10px;
+    padding: 15px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 100px;
+    background-color: #635656;
+ }
+.article_head{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 20px;
+}
+.article_head .header{
+    width: 90%;
+}
+.article_head img{
+    width: 70%;
+}
+article h1{
+    font-size: 2rem;
+}
+article span{
+    font-weight: bold;
+}
+article p{
+    font-size: 1rem;
+}
+
+/* Blog reaction */
+.reaction_status {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+.reaction_status ul{
+    display: flex;
+    justify-content: space-between;
 }
 
 /* contact */
@@ -247,6 +294,8 @@ nav li{
 #contact textarea{
     background-color: #2E1E1E;
     border: #d9d9d9 1px solid; 
+    outline: none;
+    padding: 2px;
     margin-right: 30px;
     border-radius: 2px;
     max-width: 160px;
@@ -299,6 +348,8 @@ nav li{
 footer .container{
     width: 100%;
     margin: auto;
+    bottom: 0;
+    left: 0;
     margin-top: 20px;
     background-color: #4E3F3F;
     border-radius: 15px 0  15px 0;
@@ -349,7 +400,7 @@ footer .flex_footer{
         display: block;
     }
 
-    nav{
+    #nav{
         display: none;
     }
     #home .main-1{
@@ -387,6 +438,23 @@ footer .flex_footer{
     display: flex;
     flex-direction: column;
    }
+
+   /* Blog section and Page */
+   article{
+    width: 100%;
+   }
+   .article_head{
+    flex-direction: column-reverse;
+   }
+   .article_head {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+   }
+   .article_head img{
+    width: 100%;
+   }
+
    /* contact */
    #contact .flex_form{
     margin-top: 20px;
@@ -397,6 +465,7 @@ footer .flex_footer{
 /* Footer */
 .flex_footer{
     flex-direction: column;
+    position: absolute;
 }
 .flex_footer ul{
     justify-content: center;
