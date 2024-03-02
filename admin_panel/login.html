@@ -17,12 +17,15 @@
         <div class="login_form">
             <h1>Login here <i class="fa fa-sign-in" aria-hidden="true"></i>
             </h1>
-             <form method="GET">
+             <form method="GET"  method="post" action="./dashboard.html" name="form" onsubmit="return validated()" >
                 <label> Email Address</label>
-                <input type="email" placeholder="enter your email address">
+                <input autocomplete="off" type="email" name="email" placeholder="enter your email address">
+                <div class="email_error" id="email_error" >your email is invalid!</div>
                 <label> Password</label>
-                <input type="password" placeholder="enter your password">
-                <button class="login" type="submit">Login Here</button>
+                <input type="password" name="password" placeholder="enter your password">
+                <div class="pass_error" id="pass_error" >your password is invalid!</div>
+                <button class="login" type="submit"> Login Here</button>
+                <!-- <button class="login" type="submit"><a href="./dashboard.html" style="color: black;"> Login Here</a></button> -->
                 <span>or</span>
                <button class="signin"> <a href="./signup.html">Sign up</a></button>
              </form>
@@ -32,6 +35,8 @@
              <!-- <h1>Hello Jovan</h1> -->
         </div>
     </div>
+    
 </div>
+ <script src="./js/validations/signin_validation.js"></script>
 </body>
 </html>
