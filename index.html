@@ -174,8 +174,11 @@
         <div>
             <h1><span class="span-5">&lt; Blog /&gt;</span></h1>
         </div>
+        <button class="pre_button"><img src="images/arrow.png" alt=""></button>
+        <button class="nxt_button"><img src="images/arrow.png" alt=""></button>
         <div class="flex_blog">
-            <div class="blog_1">
+            
+            <!-- <div class="blog_1">
                 <a href="blog.html">
                     <img src="images/blog 1.jpg" alt="blog thumbnail 1">
                     <p>Tech for starters</p>
@@ -188,11 +191,11 @@
                 </a>
             </div>
             <div class="blog_1">
-                <a href="bl">
+                <a href="blog.html">
                     <img src="images/blog 3.jpg" alt="blog thumbnail 3">
                     <p>How much $$ a software developer earn per year in 2024.</p>
                 </a>
-            </div>
+        </div> -->
         </div>
     </div>
 </section>
@@ -207,7 +210,7 @@
                 <div class="flex_form">
                     <div class="first_colmn">
                         <div><textarea id="message" name="message" cols="30" rows="5" placeholder="Leave us a message ..."></textarea></div>
-                        <button>Send <i></i></button>
+                       
                     </div>
                     <div class="second_colmn">
                         <input type="text" placeholder="enter your Full name" id="contact_name"/>
@@ -219,10 +222,20 @@
                             <option value="project_management">Project Management</option>
                             <option value="software_design">Software Design</option>
                             <option value="software_development">Sofware Development</option>
-                            <option value="Code_review">Code review And debugging</option>
+                            <option value="Code_review">Others</option>
                         </select><br/>
-                        <button>Book a Call <i></i></button>
+                        
                     </div>
+                    
+                    
+                </div>
+                <div class="contact_buttons">
+                    <button class="button-1" type="submit">Send <i></i></button>
+                    
+                         <button class="button-2" >
+                            <a href="https://cal.com/jehovanis" target="_blank">Book a Call</a>
+                        </button> 
+                    
                 </div>
             </form>
         </div>
@@ -252,6 +265,7 @@
                 </div>
         </div>
     </footer>
-
+    <script src="./js/landing.js"></script>
+    <!-- <script src="./admin_panel/js/blogs.js"></script> -->
 </body>
 </html>

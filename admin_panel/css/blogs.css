@@ -26,12 +26,17 @@ body{
     border-radius:50%;
     margin: 10px 20px 10px 0;
 }
-.header .user_info{
+.header .user_info, .header .fa-bar{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
+.header .fa-bar{
+    margin-top: -15px;
+    margin-left: 10px;
+    /* background-color:#FFF50F; */
+    display: none;
+}
 .content{
     display: flex;
    }
@@ -160,6 +165,35 @@ tr button{
     justify-content: center;
     cursor: pointer;
 }
+@media only screen and (width < 826px){
+    .header .fa-bar{
+        display: block;
+        padding: 10px;
+        width: 100%;
+        /* background-color: blue; */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        
+        margin-top: 3px;
+        
+    }
+    .content .sidebar{
+        display: none;
+    }
+
+    .main_content{
+        width: 100%;
+        border-radius: 0;
+        min-height: 100vh;
+        justify-content: flex-start;
+    }
+
+    
+    
+
+}
+
 
 
 
