@@ -47,7 +47,7 @@ function add(){
             blog_title: blog_title,
             blog_content: blog_content,
             comments: [],
-            likes: [] 
+            likes: 0 
         }
         objectData.push(newObj);
         localStorage.setItem('object', JSON.stringify(objectData))

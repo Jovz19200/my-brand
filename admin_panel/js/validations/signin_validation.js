@@ -38,3 +38,35 @@ function email_Verify(){
     }
 }
 
+const form = document.getElementById('login_form')
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    validated();
+    validate_login();
+})
+
+
+function validate_login(){
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+
+    const users = JSON.parse(localStorage.getItem('users')) || []
+    
+    const user = users.find(item => item.email === email && item.password === password)
+    if(!user){
+        alert('invalid credentials')
+        return
+    }
+
+    sessionStorage.setItem('user', JSON.stringify(user))
+    email.value = '';
+    password.value = '';
+
+    if (user.role === 'admin'){
+        window.location.href = '/my-brand/admin_panel/dashboard.html'
+    }
+    else{
+        window.location.href = '/my-brand'
+    }
+}
+

@@ -6,7 +6,7 @@ var  password2 = document.forms['form']['password2'];
 var fullname_error = document.getElementById('fullname_error');
 var email_error = document.getElementById('email_error')
 var password_error = document.getElementById('password_error')
-var confirm_error = document.getElementById('confirm_error_error')
+var confirm_error = document.getElementById('confirm_error')
 
 
 password.addEventListener('textInput', password_Verify);
@@ -39,12 +39,13 @@ function validated(){
     }
     if (password2.value !== password.value) {
         confirm_error.textContent = "Passwords do not match."; // New error message
-        confirmPassword.style.border = '1px solid red';
-        confirmPassword.focus(); // Focus on confirm password field
+        password2.style.border = '1px solid red';
+        confirm_error.style.display = 'block'
+        password2.focus(); // Focus on confirm password field
         return false;
       } 
     
- return isValid
+ return false
 }
 
 function email_Verify(){
@@ -75,17 +76,81 @@ function fullname_Verify(){
 function confirm_Verify(){
     if (password2.value !== password.value) {
         confirm_error.textContent = "Passwords do not match."; // New error message
-        confirmPassword.style.border = '1px solid red';
-        confirmPassword.focus(); // Focus on confirm password field
+        password2.style.border = '1px solid red';
+        password2.focus(); // Focus on confirm password field
         return false;
       } else {
         confirm_error.textContent = ""; // Clear error message when passwords match
-        confirmPassword.style.border = ''; // Reset border style
+        password2.style.border = ''; // Reset border style
         
         return true;
+    }  
     }
+
+
+    const form = document.getElementById('signUp_form')
+    form.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        validated()
+        validateSignUp();
+    })
+
+    function validateSignUp (){
+        // console.log("validating and signup")
+
+        const isValidEmail = email_Verify()
+        const isValidFullName = fullname_Verify()
+        const isValidPassword = password_Verify()
+        const isValidConfirm = confirm_Verify()
+        console.log(isValidConfirm)
+        console.log(isValidFullName)
+        console.log(isValidEmail)
+        console.log(isValidPassword)
+
+        if (isValidEmail && isValidFullName && isValidPassword && isValidConfirm){
+
+            console.log("validating and signup")
+            const email = document.getElementById('email').value
+            const fullname = document.getElementById('email').value
+            const password = document.getElementById('password').value
+            // const password2 = document.getElementById('password2').value
+            // const email_error = document.getElementById('email_error')
+
+            const users = JSON.parse(localStorage.getItem('users')) || []
+            const existingUser = users.find(user => user.email === email)
+            if(existingUser){
+                alert('Email already exist')
+                return
+            }
+            
+                const user = {
+                    fullname: fullname,
+                    email: email,
+                    password : password,
+                    role: 'user'
+                }
+                
+
+                users.push(user)
+                localStorage.setItem('users', JSON.stringify(users))
+                alert('User created successfully')
+
+                fullname.value = ''
+                email.value  = ''
+                password.value  = ''
+                password2.value = ''
+                
+                window.location.href = '/my-brand/admin_panel/login.html'
+            }
+
+
+        }
+
+
+
     
-      
-    }
+
+
+    
 
 
