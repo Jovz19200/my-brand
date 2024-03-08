@@ -131,9 +131,34 @@ tr{
 tr button{
     margin-left: 30px;
 }
+.create_blog{
+    margin-top: 30px;
+}
+.blog_title_area{
+    margin-top: 20px;
+    width: 100%;
+}
+.blog_title_area label{
+    font-size: 18px;
+    /* background-color: #FFF50F; */
+    padding: 3px;
+    border: 1px #635656 solid;
+    border-radius: 3px;
+}
+.blog_title_area input, .image_flex input{
+    width: 50%;
+    padding: 20px;
+}
+
+.image_flex{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
 
 .create_blog , .update_blog{
-    width: 70%;
+    width: 80%;
     margin: auto;
     /* border: whitesmoke 1px solid;
      */

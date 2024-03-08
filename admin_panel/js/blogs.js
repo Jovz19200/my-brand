@@ -2,7 +2,7 @@
 var objectData = JSON.parse(localStorage.getItem('object')) || [];
 
 function readAll(){
-    // localStorage.setItem('object', JSON.stringify(data));
+
     var tabledata = document.querySelector('.data_table')
  
    
@@ -64,18 +64,17 @@ function add(){
 function generateId(){
     return Math.random().toString().substring(2,10)
 }
-console.log(generateId());
+
 
 function edit(id){
     
     document.querySelector('.list_of_blogs').style.display = 'none'
     document.querySelector('.update_blog').style.display = 'block';
     document.querySelector('.add_blog').style.display = 'none'
-    console.log(objectData)
-    // var obj = objectData.find(rec => rec.id === 46475561);
+    
+    
     var obj = objectData.find(record => record !== record.id)
-    console.log(id)
-    console.log(obj)
+    
     document.querySelector('.ublog_title').value = obj.blog_title
     document.querySelector('.ublog_image').src = obj.blog_image
     document.querySelector('.ublog_content').value = obj.blog_content
@@ -96,8 +95,6 @@ function update(){
 
 }
 function del(id){
-    objectData = objectData.filter(rec => rec.id !== id)
-    console.log(id)
-    console.log(objectData)
+    objectData = objectData.filter(rec => rec.id !== id);
     readAll()
 }

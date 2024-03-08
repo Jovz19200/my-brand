@@ -16,12 +16,12 @@ blog_container.forEach((item, i)=> {
     })
 })
 
-// console.log(JSON.parse(blog_container))
+
 
 
 // displaying blogs from the Admin
 var objectData = JSON.parse(localStorage.getItem('object'));
-// console.log(object)
+
 function readAll(){
 const flex_blog = document.querySelector('.flex_blog');
 flex_blog.innerHTML = ''
