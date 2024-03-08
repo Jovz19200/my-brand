@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/blogs.css">
+    <script src="https://kit.fontawesome.com/79b8b085c2.js" crossorigin="anonymous"></script>
+    <title>Dashboard</title>
+    
+</head>
+<body onload="readAll()">
+    <div class="container">
+        <div class="header">
+            <img src="../images/Jehovanis_prof_pic-removebg-preview.png" alt="profile picture">
+            <div class="user_info">
+                <h3>Niyogisubizo H. Johovanis</h3>
+                <h4>gisubizo.jovan@gmail.com</h4>
+            </div>
+            <div class="fa-bar"><i class="fa-solid fa-bars"></i></div>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <ul>
+                    <li><a href="./dashboard.html">Dashboard</a></li>
+                    <li><a href="./userpage.html">users</a></li>
+                    <li><a href="./blogs.html">Blogs</a></li>
+                    <li><a href="">Messages</a></li>
+                    <li><a href="">Notifications</a></li>
+                </ul>
+            </div>
+
+
+
+            <!-- Main content definition -->
+
+            <div class="main_content">
+                
+                <div class="list_blogs">
+                    <div class="header">
+                        <div><h1 class="title">Blogs</h1></div>
+                        <button onclick="create()" class="add_blog"><i class="fa fa-plus" aria-hidden="true"></i> Add Blog</button>
+                    </div>
+                    <div class="list_of_blogs">
+                        <table>
+                            <div>
+
+                                <th style="padding: 10px; margin-right: 10px;">Blog image</th>
+                                <th style="padding: 10px;">Blog title</th>
+                                <th style="padding: 10px;"> Actions</th>
+                            
+                            </div>
+                            <tbody class="data_table">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+
+
+                <div class="create_blog">
+                    <form id="createBlogForm">
+                        <div>
+                            <div class="blog_title_area"><label for="title">Blog Title</label>
+                            <input type="text" id="title" class="blog_title" placeholder="enter the blog title" style="background-color: #4E3F3F;
+                            border: #D9D9D9 1px solid;
+                            border-radius: 5px;
+                            color: white;
+                            outline: none;
+                            padding: 3px;">
+                            </div>
+                            <div class="image_flex"><label for="imageInput">Blog Image</label>
+                            <input type="file" id="imageInput" class="blog_image" accept="image/*">
+                        </div>
+                        </div>
+
+                        <textarea class="blog_content" name="content" placeholder="Write your blog content here"></textarea>
+                        <div class="buttons">
+                        <div class="formatting-buttons">
+                          <button type="button" data-action="bold"><b>B</b></button>
+                          <button type="button" data-action="italic"><i>I</i></button>
+                          <button type="button" data-action="underline"><u>U</u></button>
+
+                        </div>
+                        <button onclick="add()" type="button">Publish Blog</button>
+                        </div>
+                        
+                      </form>
+                </div>
+
+
+
+                <div class="update_blog" style="display: none;">
+                    <form id="createBlogForm">
+                        <div>
+                            <div><label for="title">Blog Title</label></div>
+                            <input class="id" hidden type="text">
+                            <input type="text" id="title" class="ublog_title" placeholder="enter the blog title" style="background-color: #4E3F3F;
+                            border: #D9D9D9 1px solid;
+                            border-radius: 5px;
+                            color: white;
+                            outline: none;
+                            padding: 3px;">
+                            <div class="image_flex"><label for="imageInput">Blog Image</label>
+                            <input type="file" id="imageInput" class="ublog_image" accept="image/*">
+                            </div>
+                        </div>
+
+                        <textarea class="ublog_content" name="content" placeholder="Write your blog content here"></textarea>
+                        <div class="buttons">
+                        <div class="formatting-buttons">
+                          <button type="button" data-action="bold"><b>B</b></button>
+                          <button type="button" data-action="italic"><i>I</i></button>
+                          <button type="button" data-action="underline"><u>U</u></button>
+
+                        </div>
+                        <button onclick="update()" type="button">Update Blog</button>
+                        </div>
+                        
+                      </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="./js/blogs.js"></script>   
+</body>
+</html>

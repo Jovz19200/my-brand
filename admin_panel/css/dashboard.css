@@ -1,0 +1,153 @@
+body{
+    background-color: #2E1E1E;
+    color: white;
+}
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.container{
+    width: 99%;
+    margin: auto;
+    margin-left: 1%;
+}
+
+/* header */
+.header{
+    display: flex;
+    
+}
+
+.header img{
+    width: 70px;
+    height: 70px;
+    border: #635656 1px solid;
+    border-radius:50% ;
+    margin: 10px 20px 10px 0;
+}
+.header .user_info, .header .fa-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header .fa-bar{
+    margin-top: -15px;
+    margin-left: 10px;
+    display: none;
+}
+
+.content{
+    display: flex;
+   }
+/* sidebar */
+
+.sidebar{
+    width: 15%;
+    min-height: 100vh;
+    margin-left: 1%;
+}
+
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.sidebar ul li{
+    min-height: 40px;
+    font-size: 1.5rem;
+    padding: 10px;
+    font-weight: bold;
+}
+.sidebar a{
+    text-decoration: none;
+    color: white;
+}
+
+
+/* main content */
+.main_content{
+    width: 85%;
+    background-color: #4E3F3F;
+    border-radius: 20px 0 0 0;
+    margin-right: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+
+}
+.main_content  h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.first_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+.first_row div{
+    width: 20%;
+    padding: 4%;
+    margin: 20px 15px 20px 15px ;
+    display: flex;
+    white-space: wrap;
+    font-size: 1rem;
+    /* border: #2E1E1E 1px solid; */
+    border-radius: 10px;
+    background-color: #635656;
+}
+
+
+/* User page */
+.a_user{
+    width: 70%;
+    margin: auto;
+    border: #FFFFFF 1px solid ;
+    border-radius: 10px;
+    background-color: #635656;
+    padding: 3px 10px;
+    display: flex;
+    justify-content: center;
+}
+.a_user div{
+    display: flex;
+    padding: 10px;
+}
+.a_user div i{
+    margin-right: 20px;
+}
+
+@media only screen and (width < 826px){
+    .header .fa-bar{
+        display: block;
+        padding: 10px;
+        width: 100%;
+        /* background-color: blue; */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        
+        margin-top: 3px;
+        
+    }
+    .content .sidebar{
+        display: none;
+    }
+
+    .main_content{
+        width: 100%;
+        border-radius: 0;
+        min-height: 100vh;
+        justify-content: flex-start;
+    }
+
+    .first_row div{
+        font-size: 0.6rem;
+    }
+    
+
+}
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/79b8b085c2.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Login</title>
+
+</head>
+<body>
+    <div id="container">
+        
+    <div class="content">
+        <a href="../index.html"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a> <!-- <span> Return</span> -->
+
+        <div class="login_form">
+            <h1>Login here <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </h1>
+             <form method="GET"  method="post" action="./dashboard.html" name="form" onsubmit="return validated()" >
+                <label> Email Address</label>
+                <input autocomplete="off" type="email" name="email" placeholder="enter your email address">
+                <div class="email_error" id="email_error" >your email is invalid!</div>
+                <label> Password</label>
+                <input type="password" name="password" placeholder="enter your password">
+                <div class="pass_error" id="pass_error" >your password is invalid!</div>
+                <button class="login" type="submit"> Login Here</button>
+                <!-- <button class="login" type="submit"><a href="./dashboard.html" style="color: black;"> Login Here</a></button> -->
+                <span>or</span>
+               <button class="signin"> <a href="./signup.html">Sign up</a></button>
+             </form>
+        </div>
+        <div class="image-container">
+             <img src="../images/info vault.jpg">
+             <!-- <h1>Hello Jovan</h1> -->
+        </div>
+    </div>
+    
+</div>
+ <script src="./js/validations/signin_validation.js"></script>
+</body>
+</html>
