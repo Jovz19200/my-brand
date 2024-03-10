@@ -34,7 +34,7 @@
           
         </nav>
 
-        <article class="blog_content">
+        <article id="article" class="blog_content">
             <!-- <article> -->
                 <div class="article_head">
                     <!-- Blog titles here -->
@@ -56,33 +56,33 @@
                     <li><p><span>LAMP Stack</span>: Established and well-documented, PHP is beginner-friendly,widespread usage means abundant support, and MySQL is a commondatabase choice</p></li>
                     </ul>
 
+
             <div class="reaction_section">
                 <div class="reaction_status">
                     <ul>
-                        <li>Published 10/02/2024</li>
+                        <!-- <li>Published 10/02/2024</li> -->
                         <li>1.1k Views</li>
-                        <li>27 comments</li>
-                        <li>200 likes</li>
-                        <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></li>
+                        <li><span class="n_comments"></span> comments</li>
+                        <li><span class="n_likes"></span> likes</li> 
+                        <li class="like_icon"><i class="fa-regular fa-heart" id="likeButton" aria-hidden="true" onclick="pushLikes()"></i></li>
                     </ul>
                 </div>
+
+
                 <div class="comments">
                     <h6><i class="fa fa-comment-o" aria-hidden="true"></i>
                         <button type="submit">Add your comment</button>
                     </h6>
                     <div class="add_comment">
-                        <textarea class="comment_area" rows="4" cols="30" name="message">Enter your Comment here...</textarea>
+                        <textarea class="comment_area" rows="4" cols="30" name="message" placeholder="Enter your Comment here..."></textarea>
                         
                     </div>
                     <!-- post comment button -->
                     <button class="post_comment" type="submit" onclick="pushComment()">Post</button>
 
-                    <div class="comments_given">
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                        <p>Thank you for the content It was really helpful</p>
-                        <div class="reactions"> 
-
-                        </div>
+                    <div class="all_comments">
+                    
+                    </div>
                     </div>
                 </div>
             </div> 
@@ -94,21 +94,21 @@
         <div class="container" style="border: #635656 1px solid; position: fixed;">
                 <div class="flex_footer">
                     <div class="first_colmn">
-                        <h2>Connect with us Today</h2>
+                        <h2>Connect with <span class="span-3">Me</span>  Today</h2>
                         <ul>
-                            <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-reddit" aria-hidden="true"></i></a></li>
+                            <li class="span-3"><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                            <li class="span-1"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></li>
+                            <li class="span-2"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li class="span-4"><a href="#"><i class="fa fa-reddit" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                     <div class="second_colmn">
-                        <h3>&copy; 2024  Developed with <i class="fa fa-heart-o" aria-hidden="true"></i> by Jehovanis</h3>
+                        <h3><span class="span-1"> &copy;</span> 2024  Developed with <span class="span-2"><i class="fa fa-heart-o" aria-hidden="true"></i></span> by <span class="span-3">Jehovanis</span></h3>
                     </div>
                     <div class="third_colmn">
         
-                            <a href="#nav"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
+                            <a href="#article"><span class="span-5"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></span></a>
                         
                     </div>
                 </div>

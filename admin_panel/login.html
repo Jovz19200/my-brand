@@ -17,12 +17,12 @@
         <div class="login_form">
             <h1>Login here <i class="fa fa-sign-in" aria-hidden="true"></i>
             </h1>
-             <form method="GET"  method="post" action="./dashboard.html" name="form" onsubmit="return validated()" >
+             <form id="login_form" name="form" >
                 <label> Email Address</label>
-                <input autocomplete="off" type="email" name="email" placeholder="enter your email address">
+                <input autocomplete="off" type="email" name="email" placeholder="enter your email address"  id="email">
                 <div class="email_error" id="email_error" >your email is invalid!</div>
                 <label> Password</label>
-                <input type="password" name="password" placeholder="enter your password">
+                <input type="password" name="password" placeholder="enter your password" id="password">
                 <div class="pass_error" id="pass_error" >your password is invalid!</div>
                 <button class="login" type="submit"> Login Here</button>
                 <!-- <button class="login" type="submit"><a href="./dashboard.html" style="color: black;"> Login Here</a></button> -->
