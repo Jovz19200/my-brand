@@ -65,7 +65,7 @@ function password_Verify(){
 
 }
 function fullname_Verify(){
-    if(fullname.value.length > 10){
+    if(fullname.value.length > 8){
         fullname.style.border = '1px solid #D9D9D9';
         fullname_error.style.display = 'none';
         return true;
@@ -96,25 +96,21 @@ function confirm_Verify(){
     })
 
     function validateSignUp (){
-        // console.log("validating and signup")
+        
 
         const isValidEmail = email_Verify()
         const isValidFullName = fullname_Verify()
         const isValidPassword = password_Verify()
         const isValidConfirm = confirm_Verify()
-        console.log(isValidConfirm)
-        console.log(isValidFullName)
-        console.log(isValidEmail)
-        console.log(isValidPassword)
+          
 
         if (isValidEmail && isValidFullName && isValidPassword && isValidConfirm){
 
-            console.log("validating and signup")
+            
             const email = document.getElementById('email').value
             const fullname = document.getElementById('email').value
             const password = document.getElementById('password').value
-            // const password2 = document.getElementById('password2').value
-            // const email_error = document.getElementById('email_error')
+           
 
             const users = JSON.parse(localStorage.getItem('users')) || []
             const existingUser = users.find(user => user.email === email)
@@ -130,7 +126,7 @@ function confirm_Verify(){
                     role: 'user'
                 }
                 
-
+                console.log(fullname);
                 users.push(user)
                 localStorage.setItem('users', JSON.stringify(users))
                 alert('User created successfully')

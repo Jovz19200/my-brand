@@ -107,7 +107,7 @@ nav li:after{
     color: #85C249;
 }
 .span-2{
-    color: #FF2416;
+    color: #FF2416 !important;
 }
 .span-3{
     color:#496BC2;
@@ -313,7 +313,7 @@ nav li:after{
 #blog .flex_blog .blog_1{
     width: 32%;
     padding: 5px;
-    display: inline-block;
+    /* display: inline-block; */
     float: left;
 }
 #blog .flex_blog img{
@@ -397,6 +397,12 @@ article p{
     margin: 5px 0 0 5px;
     min-width: 50%;
 }
+
+.reaction_status li .colored_i{
+    color: #496BC2 !important;
+}
+
+
 /* .comments input[placeholder]{
     margin-top: 0px;
 } */
@@ -406,6 +412,10 @@ article p{
     min-height: 100px;
     border: #FFFFFF 1px solid;
     border-radius: 15px;
+}
+
+.add_comment textarea{
+    width: 97%;
 }
 .comments_given{
     margin-top: 20px;
@@ -544,9 +554,7 @@ body h1:hover{
     border-radius: 5px;
 }
 
- /* img:hover{
-    width: 99%;
-}  */
+ 
 
 
 /* sliders */
@@ -697,13 +705,28 @@ body h1:hover{
    .article_head img{
     width: 100%;
    }
-   .blog_1{
-    width: 90%;
-   }
+   #blog .flex_blog .blog_1{
+    width: 100%;
+    padding: 5px;
+    float: left;
+}
    .reaction_status ul{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+
+.add_comment{
+    
+    width: 95%;
+    min-height: 100px;
+    border: #FFFFFF 1px solid;
+    border-radius: 15px;
+}
+
+.add_comment textarea{
+    width: 97%;
 }
 
    /* contact */

@@ -10,8 +10,16 @@ var all_comments = document.querySelector('.all_comments')
 
 
 var objectData = JSON.parse(localStorage.getItem('object')) || []
+var loggedInUser = JSON.parse(sessionStorage.getItem('user')) || []
+
+
+
+
+
+
 
 var single_blog = objectData.find(item => item.id === blogId)
+
 
 
 blog_image.src = single_blog.blog_image
@@ -19,15 +27,23 @@ blog_title.textContent = single_blog.blog_title
 
 function pushComment(){
     var comment_text = document.querySelector('.comment_area').value;
-   
-   
-    single_blog.comments.push({name: 'gisubizo', comment_text, date: new Date().toLocaleString()});
-    
-   
+    // console.log(loggedInUser)
+    if (loggedInUser && loggedInUser.role === 'user')
+    {
+    if (comment_text === ''){
+        alert('invalid comment')
+    }
+    const user_name = loggedInUser.fullname.substring(0, loggedInUser.fullname.indexOf('@'))
+    single_blog.comments.push({name: user_name, comment_text, date: new Date().toLocaleString()});
+     
     localStorage.setItem('object', JSON.stringify(objectData) )
     comment_text.value = '';
-
-   window.location.reload()
+    window.location.reload()
+    }
+    else{
+        alert('Login is required')
+    }
+    
 }
 
 single_blog.comments.forEach(element => {
@@ -46,3 +62,44 @@ single_blog.comments.forEach(element => {
     all_comments.appendChild(comment_div)
 
 });
+
+
+const blog_stats = document.querySelector('reaction_status')
+const n_likes = document.querySelector('.n_likes')
+const n_comments = document.querySelector('.n_comments')
+const fa_heart = document.querySelector('.like_icon i')
+function pushLikes(){
+    
+    const isLiked = single_blog.isLiked
+    
+    if (loggedInUser && loggedInUser.role === 'user'){
+
+        if (!isLiked){
+            single_blog.likes++
+            single_blog.isLiked = true
+           
+            // alert(like)
+        }
+        else{
+            single_blog.likes--
+            single_blog.isLiked = false
+            // alert(like)
+        }
+
+        // likes  = likes + like
+        
+    }
+    else{
+        alert('login is required')
+    }
+    
+    localStorage.setItem('object', JSON.stringify(objectData))
+    window.location.reload();
+}
+n_likes.textContent = single_blog.likes
+n_comments.textContent = single_blog.comments.length
+if(single_blog.isLiked){
+    fa_heart.style.color = 'red'
+}
+
+
