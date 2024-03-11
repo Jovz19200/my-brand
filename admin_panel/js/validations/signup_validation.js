@@ -123,7 +123,7 @@ function confirm_Verify(){
                     fullname: fullname,
                     email: email,
                     password : password,
-                    role: 'admin'
+                    role: 'user'
                 }
                 
                 console.log(fullname);
