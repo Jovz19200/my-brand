@@ -6,9 +6,11 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/global.css" />
     <title>Personal website</title>
 </head>
 <body>
+   
     <div class="mob_nav">
         <h2 class="title"><span class="span-4"><a href="#home">Jehovanis</a></span> N.</h2> 
         <i class="fa-solid fa-bars"></i> 
@@ -165,21 +167,30 @@
             </div>
         
     </section>
+    
             <!-- blog Section -->
+            
 <section id="blog">
     <div class="container">
         <div>
             <h1><span class="span-5">&lt; Blog /&gt;</span></h1>
+            <!-- <div id="loader-element" class="container-loader">
+                <p>Loading ...</p>
+                <div id="loader" class="loader"></div>
+            </div> -->
         </div>
         <button class="pre_button"><img src="images/arrow.png" alt=""></button>
         <button class="nxt_button"><img src="images/arrow.png" alt=""></button>
+        <div id="loader-element" class="container-loader" style="display: inline-block;">
+            <p>Waiting for blogs ...</p>
+            <p id="loader" class="loader"></p>
+        </div>
         <div class="flex_blog">
             
            <!-- blogs are to be fitted in this space -->
         </div>
     </div>
 </section>
-
     <!-- Contact section -->
     <section id="contact">
         <div class="container">

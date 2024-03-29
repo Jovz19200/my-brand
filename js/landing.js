@@ -17,24 +17,41 @@ blog_container.forEach((item, i)=> {
 })
 
 
+// <div id="loader-element" class="container-loader">
+// <p>Loading blogs...</p>
+// <div id="loader" class="loader"></div>
+// </div>
 
+// displaying blogs from server
 
-// displaying blogs from the Admin
-var objectData = JSON.parse(localStorage.getItem('object'));
+const loader  = document.getElementById('loader-element')
 
-function readAll(){
+const SERVER_BLOGS = 'https://my-brand-be-sor4.onrender.com/api/v1/blogs';
+
+async function readAll(){
+
 const flex_blog = document.querySelector('.flex_blog');
 flex_blog.innerHTML = ''
+loader.style.display = 'block'
 
-objectData.forEach(item =>{
+try{
+    
+    const response = await fetch(SERVER_BLOGS)
+    const data = await response.json()
+    
+    objectData = data.data
+    objectData.forEach(item =>{
     const blog_div = document.createElement('div')
-    blog_div.classList.add('blog_1') 
+          blog_div.classList.add('blog_1') 
+
     const blog_link = document.createElement('a')
-    blog_link.href = `/my-brand/blog.html?id=${item.id}`
+          blog_link.href = `/my-brand/blog.html?id=${item._id}`
+
     const blog_image = document.createElement('img')
-    blog_image.src = item.blog_image
+          blog_image.src = item.image
+
     const blog_title = document.createElement('p')
-    blog_title.textContent = item.blog_title
+          blog_title.textContent = item.title
 
     blog_link.appendChild(blog_image)
     blog_link.appendChild(blog_title)
@@ -42,8 +59,12 @@ objectData.forEach(item =>{
     blog_div.appendChild(blog_link)
 
     flex_blog.appendChild(blog_div)
+    loader.style.display = 'none'
 })
-
-
+}
+catch(error){
+    console.log(error)
+    loader.style.display = 'none'
+}
 }
 window.onload = readAll()
