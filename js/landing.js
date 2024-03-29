@@ -17,10 +17,7 @@ blog_container.forEach((item, i)=> {
 })
 
 
-// <div id="loader-element" class="container-loader">
-// <p>Loading blogs...</p>
-// <div id="loader" class="loader"></div>
-// </div>
+
 
 // displaying blogs from server
 

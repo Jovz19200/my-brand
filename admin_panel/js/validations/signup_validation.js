@@ -1,14 +1,14 @@
 const  REGISTER_USER = 'https://my-brand-be-sor4.onrender.com/api/v1/users'
 
-var fullname = document.forms['form']['fullname'];
-var email = document.forms['form']['email'];
-var  password = document.forms['form']['password'];
-var  password2 = document.forms['form']['password2'];
+let fullname = document.forms['form']['fullname'];
+let email = document.forms['form']['email'];
+let  password = document.forms['form']['password'];
+let  password2 = document.forms['form']['password2'];
 
-var fullname_error = document.getElementById('fullname_error');
-var email_error = document.getElementById('email_error')
-var password_error = document.getElementById('password_error')
-var confirm_error = document.getElementById('confirm_error')
+let fullname_error = document.getElementById('fullname_error');
+let email_error = document.getElementById('email_error')
+let password_error = document.getElementById('password_error')
+let confirm_error = document.getElementById('confirm_error')
 
 
 password.addEventListener('textInput', password_Verify);
@@ -101,14 +101,22 @@ function confirm_Verify(){
         validateSignUp();
         
     })
-    const user = {
-        name: document.getElementById('fullname').value,
-        email:  document.getElementById('email').value,
-        password: document.getElementById('password').value,
-    }
+    // const user = {
+    //     name: document.getElementById('fullname').value,
+    //     email:  document.getElementById('email').value,
+    //     password: document.getElementById('password').value,
+    // }
 
     const  validateSignUp = async () =>{
-      
+        const name= document.getElementById('fullname').value;
+        const email =  document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const password2 = document.getElementById('password2').value;
+        const user = {
+            name: name,
+            email: email,
+            password: password
+        }
         try{
             const response = await fetch(REGISTER_USER,{
                 method: 'POST',
@@ -118,12 +126,11 @@ function confirm_Verify(){
                 body: JSON.stringify(user)
             })
             const data = await response.json()
-            console.log(data)
             
         }catch(error){
             console.log(error)
         }
-        fullname.value = ''
+        name.value = ''
         email.value  = ''
         password.value  = ''
         password2.value = ''

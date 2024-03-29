@@ -18,9 +18,11 @@ var post_comment = document.querySelector('.post_comment')
 var all_comments = document.querySelector('.all_comments')
 
 let objectData = []
-let n_likes = document.querySelector('.n_likes')
+const n_likes = document.querySelector('.n_likes')
 const load_image = document.getElementById('loader-element-img')
 const load_comment = document.getElementById('loader-element-cmt')
+const n_comments = document.querySelector('.n_comments')
+
 const fetchSingleBlog = async() =>{
 try{
     load_image.style.display = 'block'
@@ -34,16 +36,16 @@ try{
 
 // Retrieve comments()
     
-    const n_comments = document.querySelector('.n_comments')
+    
     try{
         load_comment.style.display = 'block'
         const response = await fetch(`${SERVER_SINGLE_BLOG}/comments`)
         const data = await response.json()
         objectData.comments = data.data
-
+        
         if(objectData.comments == 0){
             n_comments.textContent = 0
-            console.log('no comments')
+
         }else{
             n_comments.textContent = objectData.comments.length
         }
@@ -79,13 +81,13 @@ catch(error){
 
 
     // retrieve likes
-    let n_likes = document.querySelector('.n_likes')
+  
     try{
         const response = await fetch(`${SERVER_SINGLE_BLOG}/likes`)
         const data = await response.json()
-        objectData = data.data
+        likesData = data.data
        
-        n_likes.textContent = objectData.length
+        n_likes.textContent = likesData.length
     }
     catch(error){
         console.log(error)
@@ -109,81 +111,70 @@ catch(error){
 fetchSingleBlog();
 
 
- // push comments
-let comment_text = document.querySelector('.comment_area')
-
-console.log(comment_text)
-
 const token = localStorage.getItem('token')
 async function pushComment(){  
     
-    console.log(comment_text)
+    const comment_text = document.querySelector('.comment_area')
+    const comment = comment_text.value
+    
     if(!token){
         alert('login is required')
     }
     else{
     try{
-       
+        post_comment.textContent = 'Sending...'
         const response = await fetch(`${SERVER_SINGLE_BLOG}/comments`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({content: comment_text.value})
+            body: JSON.stringify({content: comment})
         })
-        const data = await response.json()
-       
-        console.log(data)
-        alert('processing...')
-        
+
+        if(response.ok)
+        {
+        const resp = await fetch(`${SERVER_SINGLE_BLOG}/comments`)
+        const comments = await resp.json()
+        n_comments.textContent = comments.comments
+        const len  = comments.data.length
+        post_comment.textContent = 'Post Comment'
+        comment_text.value = ''
+
+        const comment_div = document.createElement('div')
+        comment_div.classList.add('comments_given')    
+    
+        var comment_item = `
+        <i class="fa fa-user-circle-o" aria-hidden="true" style="margin-top: 7px" ></i>
+        <div class="comment_container">
+            <div style="border-bottom: #FFFFFF 1px solid">
+            <h4>${comments.data[len - 1].name}</h4>
+            <p>${comments.data[len - 1].content}</p>
+            </div>
+        </div>
+        `
+        comment_div.innerHTML  = comment_item
+        all_comments.appendChild(comment_div)
+        }
+        else{
+            post_comment.textContent = 'Post Comment'
+            alert('comment not sent')
+        }
     }
     catch(error){
         console.log('error' + error)
+        load_comment.style.display = 'none'
     }  
 
 }
-    // console.log(loggedInUser)
-    // if (loggedInUser && loggedInUser.role === 'user')
-    // {
-    // if (comment_text === ''){
-    //     alert('invalid comment')
-    // }
-    // const user_name = loggedInUser.fullname.substring(0, loggedInUser.fullname.indexOf('@'))
-    // single_blog.comments.push({name: user_name, comment_text, date: new Date().toLocaleString()});
-     
-    // localStorage.setItem('object', JSON.stringify(objectData) )
-    // comment_text.value = '';
-    // window.location.reload()
-    // }
-    // else{
-    //     alert('Login is required')
-    // }
-    
 }
 
-// post_comment.addEventListener('click', () =>{
-//     pushComment()
-// })
-
-
-// const blog_stats = document.querySelector('reaction_status')
-
+// Posting a Like
 
 const fa_heart = document.querySelector('.like_icon i')
 let isLiked = false
 async  function pushLikes(){
-    let n_likes = document.querySelector('.n_likes')
-    try{
-        // retrieve likes
-        const response = await fetch(`${SERVER_SINGLE_BLOG}/likes`)
-        const data = await response.json()
-        objectData = data.data
-        n_likes.textContent = objectData.length
-    }
-    catch(error){
-        console.log(error)
-    }
+    
     if(!token){
         alert('login is required')
     }
@@ -196,19 +187,20 @@ async  function pushLikes(){
                     'Content-Type': 'application/json'
                 }
             })
-            const data = await response.json()
-        
-            n_likes.textContent = objectData.length
+            const resp = await fetch(`${SERVER_SINGLE_BLOG}/likes`)
+            const data = await resp.json()
+            
+            n_likes.textContent = data.likes
             if (data.message === 'your like was added'){
                 isLiked = true
             }
             if(isLiked){
                 fa_heart.style.color = '#85C249'
-                console.log('liked')
+                
             }else{
                 fa_heart.style.color = 'white'
             }
-            console.log(data)
+            
         }
         catch{
             console.log(error)
@@ -216,31 +208,6 @@ async  function pushLikes(){
         
     }
 
-    
-    
-    // if (loggedInUser && loggedInUser.role === 'user'){
-
-    //     if (!isLiked){
-    //         single_blog.likes++
-    //         single_blog.isLiked = true
-           
-    //         // alert(like)
-    //     }
-    //     else{
-    //         single_blog.likes--
-    //         single_blog.isLiked = false
-    //         // alert(like)
-    //     }
-
-    //     // likes  = likes + like
-        
-    // }
-    // else{
-    //     alert('login is required')
-    // }
-    
-    // localStorage.setItem('object', JSON.stringify(objectData))
-    // window.location.reload();
 }
 
 
