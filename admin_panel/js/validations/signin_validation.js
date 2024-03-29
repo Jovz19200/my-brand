@@ -60,8 +60,7 @@ async function validate_login(){
             body: JSON.stringify({email: email, password: password})
         })
         const data = await response.json()
-        // console.log(response)
-        // console.log(data) 
+        
         if(data.status === 'success'){
             alert('login successful')
             const token = data.token
