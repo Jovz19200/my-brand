@@ -6,15 +6,17 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@latest/iconify.min.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/global.css" />
     <title>My blog</title>
 </head>
+
 <body style="background-color: #4E3F3F;">
     <div class="mob_nav">
         <h2 class="title"><span class="span-4"><a href="index.html#home">Jehovanis</a></span> N.</h2> 
         <i class="fa-solid fa-bars"></i> 
     </div>
         <nav id="nav">
-            <!-- <div class="container"> -->
+          
                 
                  
                     <ul>
@@ -40,10 +42,15 @@
                     <!-- Blog titles here -->
                     <div class="blog_image">
                         <img src="" alt="Blog Image">
+                        <div id="loader-element-img" class="container-loader">
+                            <p>Image Loading ...</p>
+                            <div id="loader" class="loader"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="blog_title">
-                        <h1></h1>
+                    <h1></h1>
+    
                 </div>
                 <p>
                     Here I bring you some widely known stacks like  MERN, LAMP, Python/Django, Flutterwith Dark and MEVN stacks, so if you are a complete beginner looking  a career in software or web development, you will have to choose a stack from the suggestions below.
@@ -81,7 +88,10 @@
                     <button class="post_comment" type="submit" onclick="pushComment()">Post</button>
 
                     <div class="all_comments">
-                    
+                        <div id="loader-element-cmt" class="container-loader">
+                            <p>Waiting 🧐 ...</p>
+                            <div id="loader" class="loader"></div>
+                        </div>
                     </div>
                     </div>
                 </div>

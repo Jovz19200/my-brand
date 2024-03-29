@@ -1,3 +1,5 @@
+const  REGISTER_USER = 'https://my-brand-be-sor4.onrender.com/api/v1/users'
+
 var fullname = document.forms['form']['fullname'];
 var email = document.forms['form']['email'];
 var  password = document.forms['form']['password'];
@@ -87,60 +89,50 @@ function confirm_Verify(){
     }  
     }
 
+   
 
+
+    
+    
     const form = document.getElementById('signUp_form')
     form.addEventListener('submit', (e)=>{
         e.preventDefault()
         validated()
         validateSignUp();
-    })
-
-    function validateSignUp (){
         
+    })
+    const user = {
+        name: document.getElementById('fullname').value,
+        email:  document.getElementById('email').value,
+        password: document.getElementById('password').value,
+    }
 
-        const isValidEmail = email_Verify()
-        const isValidFullName = fullname_Verify()
-        const isValidPassword = password_Verify()
-        const isValidConfirm = confirm_Verify()
-          
-
-        if (isValidEmail && isValidFullName && isValidPassword && isValidConfirm){
-
+    const  validateSignUp = async () =>{
+      
+        try{
+            const response = await fetch(REGISTER_USER,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            const data = await response.json()
+            console.log(data)
             
-            const email = document.getElementById('email').value
-            const fullname = document.getElementById('email').value
-            const password = document.getElementById('password').value
-           
-
-            const users = JSON.parse(localStorage.getItem('users')) || []
-            const existingUser = users.find(user => user.email === email)
-            if(existingUser){
-                alert('Email already exist')
-                return
-            }
-            
-                const user = {
-                    fullname: fullname,
-                    email: email,
-                    password : password,
-                    role: 'user'
-                }
-                
-                console.log(fullname);
-                users.push(user)
-                localStorage.setItem('users', JSON.stringify(users))
-                alert('User created successfully')
-
-                fullname.value = ''
-                email.value  = ''
-                password.value  = ''
-                password2.value = ''
-                
-                window.location.href = '/my-brand/admin_panel/login.html'
-            }
-
-
+        }catch(error){
+            console.log(error)
         }
+        fullname.value = ''
+        email.value  = ''
+        password.value  = ''
+        password2.value = ''
+        
+        
+    }
+
+
+
 
 
 

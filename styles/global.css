@@ -1,0 +1,14 @@
+.loader {
+    border: 3px solid #85C249;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-right-color: transparent;
+    animation: rot 1s linear infinite;
+    /* box-shadow: 0px 0px 20px rgb(150, 153, 150) inset; */
+  }
+  @keyframes rot {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
