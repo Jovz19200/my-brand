@@ -1,6 +1,10 @@
 const blog_container = [...document.querySelectorAll('.flex_blog')];
 const next_btn = [...document.querySelectorAll('.nxt_button')];
 const pre_btn = [...document.querySelectorAll('.pre_button')];
+const SendQuery = document.getElementById('send_query')
+const myModalInfo = document.getElementById('myModal_info')
+const closeButtonInfo = document.querySelector('.close_btn')
+
 
 blog_container.forEach((item, i)=> {
     let containerDimensions = item.getBoundingClientRect();
@@ -24,6 +28,7 @@ blog_container.forEach((item, i)=> {
 const loader  = document.getElementById('loader-element')
 
 const SERVER_BLOGS = 'https://my-brand-be-sor4.onrender.com/api/v1/blogs';
+const SERVER_QUERIES = 'https://my-brand-be-sor4.onrender.com/api/v1/queries';
 
 async function readAll(){
 
@@ -58,7 +63,7 @@ try{
 
         const blog_div = document.createElement('div')
             blog_div.style.backgroundColor = '#4E3F3F'
-            blog_div.style.marginRight = '10px'
+            blog_div.style.marginRight = '4px'
           blog_div.classList.add('blog_1') 
 
     const blog_link = document.createElement('a')
@@ -71,7 +76,7 @@ try{
           blog_title.textContent = item.title
 
     const blog_data = document.createElement('p')
-          blog_data.textContent = `${likes} likes, ${comments} comments`
+          blog_data.textContent = `${likes} likes , ${comments} comments`
           blog_data.style.fontSize = '15px'
 
     blog_link.appendChild(blog_image)
@@ -88,5 +93,69 @@ catch(error){
     console.log(error)
     loader.style.display = 'none'
 }
+
 }
+
+SendQuery.addEventListener('click', async (e)=>{
+    e.preventDefault()
+    PostQuery()
+   
+})
+
+//  Posting a Querry 
+closeButtonInfo.addEventListener('click', ()=>{
+    myModalInfo.style.display = 'none'
+});
+
+const info_showModal = async (message) =>{
+    document.getElementById('info_modelMessage').textContent = message
+    console.log(message)
+    myModalInfo.style.display = 'block'
+    setTimeout(() => {
+        myModalInfo.style.display = 'none'
+    }, 5000);
+}
+
+
+const PostQuery = async () =>{
+    const query = {
+        name : document.getElementById('contact_name').value,
+        email : document.getElementById('contact_email').value,
+        message : document.getElementById('message').value
+    }
+    try{
+        // SendQuery.textContent = 'Sending...'
+        const response = await fetch(`${SERVER_QUERIES}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(query)
+        })
+        const data = await response.json()
+        console.log(data.message)
+        if(data.status === 'success'){
+            
+            info_showModal('Query Sent Successfully')
+        }
+        else{
+           
+            info_showModal('Query not sent: ' + data.message)
+        
+        }
+
+        console.log(data)
+        SendQuery.textContent = 'Send'
+    }
+    catch(err){
+        info_showModal('Query not sent')
+        console.log(err)
+        SendQuery.textContent = 'Send'
+    }
+
+}
+
+// console.log(query)
+
+
 window.onload = readAll()

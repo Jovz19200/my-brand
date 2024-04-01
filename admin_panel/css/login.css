@@ -100,11 +100,15 @@ form .pass_error{
     margin: auto;
 }
 
-@media only screen and (width < 612px){
+@media only screen and (width < 1000px){
     .content{
     display: flex;
     flex-direction: column;
     padding-bottom: 100px;
+}
+#container{
+    width: 80%;
+    padding: 30px
 }
 .image-container{
     margin-top: 100px;
@@ -118,7 +122,8 @@ form .pass_error{
 }
 .content .login_form {
     width: 100%;
-    
-    
+}
+.content .login_form form{
+    width: 100%
 }
 }

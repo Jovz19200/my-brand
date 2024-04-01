@@ -17,22 +17,61 @@ var blog_title = document.querySelector('.blog_title h1')
 var post_comment = document.querySelector('.post_comment')
 var all_comments = document.querySelector('.all_comments')
 
+
+
 let objectData = []
 const n_likes = document.querySelector('.n_likes')
 const load_image = document.getElementById('loader-element-img')
 const load_comment = document.getElementById('loader-element-cmt')
 const n_comments = document.querySelector('.n_comments')
+const myModal = document.getElementById('myModal')
+const myModalInfo = document.getElementById('myModal_info')
+const signInButton =  document.getElementById('signInButton')
+const closeButton = document.querySelector('.close')
+const closeButtonInfo = document.querySelector('.close_btn')
+const modalMessage = document.getElementById('modalMessage')
+
+
+signInButton.addEventListener('click', ()=>{
+    window.location.href = '/my-brand/admin_panel/login.html'
+});
+closeButton.addEventListener('click', ()=>{
+    myModal.style.display = 'none'
+});
+
+closeButtonInfo.addEventListener('click', ()=>{
+    myModalInfo.style.display = 'none'
+});
+
+const showModal = async (message) =>{
+    document.getElementById('modelMessage').textContent = message
+    myModal.style.display = 'block'
+    setTimeout(() => {
+        myModal.style.display = 'none'
+    }, 5000);
+}
+
+const info_showModal = async (message) =>{
+    document.getElementById('info_modelMessage').textContent = message
+    console.log(message)
+    myModalInfo.style.display = 'block'
+    setTimeout(() => {
+        myModalInfo.style.display = 'none'
+    }, 5000);
+}
 
 const fetchSingleBlog = async() =>{
 try{
     load_image.style.display = 'block'
+    
+    // popupalert.textContent = 'Loading...'
     const response = await fetch(SERVER_SINGLE_BLOG)
     const data = await response.json()
     objectData = data.data
     
     blog_image.src = objectData.image
     blog_title.textContent = objectData.title
-   
+    
 
 // Retrieve comments()
     
@@ -53,7 +92,7 @@ try{
         }
 
         var comments_reversed = objectData.comments.reverse()
-        // console.log(comments_reversed)
+       
 
         comments_reversed.forEach(element => {
         const comment_div = document.createElement('div')
@@ -121,9 +160,10 @@ async function pushComment(){
     
     const comment_text = document.querySelector('.comment_area')
     const comment = comment_text.value
+
     
     if(!token){
-        alert('login is required')
+        showModal('Please Login to post a comment')
     }
     else{
     try{
@@ -166,11 +206,11 @@ async function pushComment(){
         }
         else{
             post_comment.textContent = 'Post Comment'
-            alert('comment not sent')
+            info_showModal('An error occured while posting comment perhaps check your inputs')
         }
     }
     catch(error){
-        console.log('error' + error)
+        info_showModal(`An error occured while posting comment: ${error}`)
         load_comment.style.display = 'none'
     }  
 }
@@ -183,7 +223,7 @@ let isLiked = false
 async  function pushLikes(){
     
     if(!token){
-        alert('login is required')
+        showModal('Please Login to add a Like')
     }
     else{
         try{
@@ -216,6 +256,11 @@ async  function pushLikes(){
     }
 
 }
+
+
+
+
+
 
 
 

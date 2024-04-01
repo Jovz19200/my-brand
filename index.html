@@ -10,7 +10,7 @@
     <title>Personal website</title>
 </head>
 <body>
-   
+    
     <div class="mob_nav">
         <h2 class="title"><span class="span-4"><a href="#home">Jehovanis</a></span> N.</h2> 
         <i class="fa-solid fa-bars"></i> 
@@ -156,13 +156,18 @@
                 <h1><span class="span-5">&lt; Portfolio /&gt;</span></h1>
             </div>
             <div class="flex_portfolio">
-                <a href="./blog.html"><div class="port_1">
-                    <img src="images/tech 2.jpg" alt="portfolio thumbnail 1">
-                    <p>E-commerce Web apps</p>
+                <a href="#"><div class="port_1">
+                    <img src="images/tech 2.jpg" alt="portfolio thumbnail 1" style="width: 400px; height: 250px; ">
+                    <!--  -->
                 </div></a>
-                <a href="./blog.html"><div class="port_2">
-                    <img src="images/team.jpg" alt="portfolio thumbnail 2">
-                    <p>ALX software Engineer</p>
+                <a href="#"><div class="port_2" style="font-size: smaller;">
+                    <!-- <img src="images/team.jpg" alt="portfolio thumbnail 2"> -->
+                    <p>E-commerce Web apps At Feli Technology, 2023</p>
+                    <p>ALX software Engineer, 2022 - 2023</p>
+                    <p>Andela Traine, 2024</p>
+                    <h3> Experience with:</h3>
+                    <li style="font-size: smaller;"><p><span>MERN Stack</span>: Popular with great online resources, JavaScript skills apply across all 
+                        layers, React has a gentle learning curve, and Node.js offers flexibility</p></li>
                 </div></a>
             </div>
         
@@ -218,7 +223,14 @@
                     
                 </div>
                 <div class="contact_buttons">
-                    <button class="button-1" type="submit">Send <i></i></button>
+                    <div id="myModal_info" class="modal">
+                        <div class="modal-content">
+                            <span class="close_btn close"> &times; </span>
+                            <p id="info_modelMessage"></p>
+                            
+                        </div>
+                    </div>
+                    <button class="button-1" type="submit" id="send_query" style="padding: 4px;">Send </button>
                     
                          <button class="button-2" >
                             <a href="https://cal.com/jehovanis" target="_blank">Book a Call</a>

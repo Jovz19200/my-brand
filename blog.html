@@ -11,6 +11,7 @@
 </head>
 
 <body style="background-color: #4E3F3F;">
+    
     <div class="mob_nav">
         <h2 class="title"><span class="span-4"><a href="index.html#home">Jehovanis</a></span> N.</h2> 
         <i class="fa-solid fa-bars"></i> 
@@ -38,6 +39,21 @@
 
         <article id="article" class="blog_content">
             <!-- <article> -->
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close"> &times; </span>
+                        <p id="modelMessage">Please sign in to post a comment</p>
+                        <button id="signInButton">Sign In</button>
+                    </div>
+                </div>
+                <!-- Info popup -->
+                <div id="myModal_info" class="modal">
+                    <div class="modal-content">
+                        <span class="close_btn close"> &times; </span>
+                        <p id="info_modelMessage"></p>
+                        
+                    </div>
+                </div>
                 <div class="article_head">
                     <!-- Blog titles here -->
                     <div class="blog_image">
@@ -50,8 +66,9 @@
                 </div>
                 <div class="blog_title">
                     <h1></h1>
-    
+                   
                 </div>
+                
                 <p>
                     Here I bring you some widely known stacks like  MERN, LAMP, Python/Django, Flutterwith Dark and MEVN stacks, so if you are a complete beginner looking  a career in software or web development, you will have to choose a stack from the suggestions below.
                 </p><br />
