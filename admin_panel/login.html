@@ -25,7 +25,7 @@
                 <label> Password</label>
                 <input type="password" name="password" placeholder="enter your password" id="password">
                 <div class="pass_error" id="pass_error" >your password is invalid!</div>
-                <button class="login" type="submit"> Login Here</button>
+                <button class="login" type="submit" id="login_btn"> Login Here</button>
                 <!-- <button class="login" type="submit"><a href="./dashboard.html" style="color: black;"> Login Here</a></button> -->
                 <span>or</span>
                <button class="signin"> <a href="./signup.html">Sign up</a></button>
@@ -37,6 +37,14 @@
         </div>
     </div>
     
+    <div id="myModal_info" class="modal">
+        <div class="modal-content">
+            <span class="close_btn close"> &times; </span>
+            <p id="info_modelMessage"></p>
+            
+        </div>
+    </div>
+
 </div>
  <script src="./js/validations/signin_validation.js"></script>
 </body>

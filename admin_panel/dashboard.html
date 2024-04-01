@@ -5,16 +5,24 @@
     <script src="https://kit.fontawesome.com/79b8b085c2.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/global.css">
     <title>Dashboard</title>
     
 </head>
-<body>
+<body onload="ReadDashboard()">
+    <div id="myModal_info" class="modal">
+        <div class="modal-content">
+            <span class="close_btn close"> &times; </span>
+            <p id="info_modelMessage"></p>
+            
+        </div>
+    </div>
     <div class="container">
         <div class="header">
-            <img src="../images/Jehovanis_prof_pic-removebg-preview.png" alt="profile picture">
+            <img src="../images/unknown_admin-removebg-preview.png" alt="profile picture">
             <div class="user_info">
-                <h3>Niyogisubizo H. Johovanis</h3>
-                <h4>gisubizo.jovan@gmail.com</h4>
+                <h3 id="user_name"></h3>
+                <h4 id = "user_email"></h4>
             </div>
              <div class="fa-bar"><i class="fa-solid fa-bars"></i></div>
         </div>
@@ -42,6 +50,6 @@
         </div>
     </div>
    
-    
+<script src="./js/dashboard.js"></script>
 </body>
 </html>
