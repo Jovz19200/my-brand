@@ -117,6 +117,7 @@ function confirm_Verify(){
             email: email,
             password: password
         }
+        console.log(user)
         try{
             const response = await fetch(REGISTER_USER,{
                 method: 'POST',
@@ -126,7 +127,7 @@ function confirm_Verify(){
                 body: JSON.stringify(user)
             })
             const data = await response.json()
-            
+            console.log(data)
         }catch(error){
             console.log(error)
         }

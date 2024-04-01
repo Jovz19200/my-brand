@@ -42,6 +42,8 @@ try{
         const response = await fetch(`${SERVER_SINGLE_BLOG}/comments`)
         const data = await response.json()
         objectData.comments = data.data
+
+        // console.log(objectData.comments)
         
         if(objectData.comments == 0){
             n_comments.textContent = 0
@@ -50,7 +52,10 @@ try{
             n_comments.textContent = objectData.comments.length
         }
 
-        objectData.comments.forEach(element => {
+        var comments_reversed = objectData.comments.reverse()
+        // console.log(comments_reversed)
+
+        comments_reversed.forEach(element => {
         const comment_div = document.createElement('div')
         comment_div.classList.add('comments_given')    
     
@@ -143,13 +148,16 @@ async function pushComment(){
 
         const comment_div = document.createElement('div')
         comment_div.classList.add('comments_given')    
-    
-        var comment_item = `
+        // console.log(comments)
+        let comments_reversed = await comments.data.reverse()
+        
+        console.log(comments_reversed)
+        let comment_item = `
         <i class="fa fa-user-circle-o" aria-hidden="true" style="margin-top: 7px" ></i>
         <div class="comment_container">
             <div style="border-bottom: #FFFFFF 1px solid">
-            <h4>${comments.data[len - 1].name}</h4>
-            <p>${comments.data[len - 1].content}</p>
+            <h4>${comments_reversed[len - 1].name}</h4>
+            <p>${comments_reversed[len - 1].content}</p>
             </div>
         </div>
         `
@@ -165,7 +173,6 @@ async function pushComment(){
         console.log('error' + error)
         load_comment.style.display = 'none'
     }  
-
 }
 }
 

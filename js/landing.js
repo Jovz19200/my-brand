@@ -37,8 +37,28 @@ try{
     const data = await response.json()
     
     objectData = data.data
-    objectData.forEach(item =>{
-    const blog_div = document.createElement('div')
+    objectData.forEach(async item =>{
+            const blog_stats = async (item) =>{
+                    try{
+                            const resp = await fetch(`${SERVER_BLOGS}/${item._id}/comments`)
+                            .then(resp => resp.json())
+                            const comments = resp.comments
+                            
+                            const resp_likes = await fetch(`${SERVER_BLOGS}/${item._id}/likes`)
+                            .then(likes => likes.json())
+                            const likes = resp_likes.likes
+
+                            return{comments: comments, likes: likes}
+            }
+            catch(err){
+                console.log(err)
+            }
+            }
+        const {comments, likes } = await blog_stats(item)
+
+        const blog_div = document.createElement('div')
+            blog_div.style.backgroundColor = '#4E3F3F'
+            blog_div.style.marginRight = '10px'
           blog_div.classList.add('blog_1') 
 
     const blog_link = document.createElement('a')
@@ -50,10 +70,15 @@ try{
     const blog_title = document.createElement('p')
           blog_title.textContent = item.title
 
+    const blog_data = document.createElement('p')
+          blog_data.textContent = `${likes} likes, ${comments} comments`
+          blog_data.style.fontSize = '15px'
+
     blog_link.appendChild(blog_image)
     blog_link.appendChild(blog_title)
 
     blog_div.appendChild(blog_link)
+    blog_div.appendChild(blog_data)
 
     flex_blog.appendChild(blog_div)
     loader.style.display = 'none'
