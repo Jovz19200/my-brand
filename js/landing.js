@@ -109,7 +109,7 @@ closeButtonInfo.addEventListener('click', ()=>{
 
 const info_showModal = async (message) =>{
     document.getElementById('info_modelMessage').textContent = message
-    console.log(message)
+   
     myModalInfo.style.display = 'block'
     setTimeout(() => {
         myModalInfo.style.display = 'none'
@@ -124,7 +124,7 @@ const PostQuery = async () =>{
         message : document.getElementById('message').value
     }
     try{
-        // SendQuery.textContent = 'Sending...'
+        SendQuery.textContent = 'Sending.'
         const response = await fetch(`${SERVER_QUERIES}`, {
             method: 'POST',
             headers: {
@@ -133,10 +133,15 @@ const PostQuery = async () =>{
             body: JSON.stringify(query)
         })
         const data = await response.json()
-        console.log(data.message)
+       
         if(data.status === 'success'){
             
             info_showModal('Query Sent Successfully')
+            console.log(query)
+            query.name.value = ''
+            query.email.value = ''
+            query.message = ''
+            console.log(query)
         }
         else{
            
@@ -144,7 +149,7 @@ const PostQuery = async () =>{
         
         }
 
-        console.log(data)
+
         SendQuery.textContent = 'Send'
     }
     catch(err){

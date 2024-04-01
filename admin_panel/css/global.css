@@ -32,11 +32,11 @@
 /* Modal Content/Box */
 .modal-content {
   background-color: #888;
-  margin: 5% auto; 
+  margin: 8% auto; 
   padding: 20px;
   border: none;
   border-radius: 10px;
-  width: 70%; /* Could be more or less, depending on screen size */
+  width: 66%; /* Could be more or less, depending on screen size */
 }
 
 #signInButton{
