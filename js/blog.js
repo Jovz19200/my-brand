@@ -5,11 +5,6 @@ var blogId = urlParams.get('id')
 var SERVER_URL = `https://my-brand-be-sor4.onrender.com/api/v1`
 var SERVER_SINGLE_BLOG = `https://my-brand-be-sor4.onrender.com/api/v1/blogs/${blogId}`
 
-// const  decodeJWT = (token) => {
-//     const parts = token.split('.');
-//     const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
-//     return { payload };
-// }
 
 var blog_image = document.querySelector('.blog_image img')
 var blog_title = document.querySelector('.blog_title h1')
@@ -236,11 +231,16 @@ async  function pushLikes(){
             })
             const resp = await fetch(`${SERVER_SINGLE_BLOG}/likes`)
             const data = await resp.json()
-            
+            const LikedBlog = await response.json()
+            // console.log(LikedBlog)
             n_likes.textContent = data.likes
-            if (data.message === 'your like was added'){
+            if (LikedBlog.message === 'your like was added'){
                 isLiked = true
             }
+            else{
+                isLiked = false
+            }
+            console.log(isLiked)
             if(isLiked){
                 fa_heart.style.color = '#85C249'
                 
