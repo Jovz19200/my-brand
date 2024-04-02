@@ -13,6 +13,21 @@
     }
   }
 
+  /* #likeButton:hover{
+
+    width: 50px;
+    
+
+} */
+#likeButton {
+  transition: all 0.3s ease;
+ 
+}
+
+#likeButton:hover {
+  width: 50px;
+  color: red; /* Color on hover */
+}
 
   /* The Modal (background) */
 .modal {

@@ -1,6 +1,6 @@
 const SERVER_URL = `https://my-brand-be-sor4.onrender.com/api/v1`
-// const  objectData = JSON.parse(localStorage.getItem('object')) || [];
 const token = localStorage.getItem('token')
+
 
 async function readAll(){
 
@@ -9,23 +9,29 @@ async function readAll(){
     try{
         const response = await fetch(`${SERVER_URL}/blogs`)
         const data = await response.json()
-        let objectData = data.data
-       
+        objectData = data.data
+    
         let elements = "";
         objectData.map(record =>(
+            
             elements += `
-                <tr style="border-radius: 2px;">
+                <tr id="${record._id}" style="border-radius: 2px;">
                     <td style="padding: 20px;"><img src="${record.image}" alt= "blog_Image_${record.id}" style="width: 20%; height: auto;"></td>
                     <td style="padding: 10px;">${record.title}</td>
                     <td style="padding: 10px;">
-                        <button onclick = {edit(${record._id})}><i class="fa fa-pencil" aria-hidden="true"> </i></button>
-                        <button onclick = {del(${record._id})}><i class="fa fa-trash" style="color: red;" aria-hidden="true"> </i></button>
+                        <button id="${record._id}" onclick = {editBlog(this)}><i class="fa fa-pencil" aria-hidden="true" onclick = {edit(${record._id})}> </i></button>
+                        <button id="${record._id}" onclick = {deleteBlog(this)}><i class="fa fa-trash" style="color: red;" aria-hidden="true"> </i></button>
                     </td>
     
                 </tr>
             `
         ))
+
         tabledata.innerHTML = elements
+            
+    
+    
+        
         
 
     }
@@ -34,6 +40,7 @@ async function readAll(){
     }
   
 
+   
     
 
 }
@@ -52,87 +59,147 @@ async function add(){
          title : document.querySelector('.blog_title').value,
          description : document.querySelector('.blog_content').value
         }
+        let newBlog = new FormData()
+        newBlog.append('image', blog.image)
+        newBlog.append('title', blog.title)
+        newBlog.append('description', blog.description)
+
+      
+
         const response = await fetch(`${SERVER_URL}/blogs`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+               
                 'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(blog)
+        body: newBlog
     })
     if (!response.ok){
         console.log(response.status)
     }else{
     const data = await response.json()
-    console.log(blog)
-    console.log(data)
+   
     }
     }
     catch(err){
         console.log(err)
     }
 
-
-    
-    // const reader = new FileReader();
-    //   reader.onload = function(e) {
-       
-    //     var newObj = {
-    //         id: generateId(), 
-    //         blog_image: e.target.result, 
-    //         blog_title: blog_title,
-    //         blog_content: blog_content,
-    //         comments: [],
-    //         likes: 0,
-    //         isLiked: false
-
-    //     }
-    //     objectData.push(newObj);
-    //     localStorage.setItem('object', JSON.stringify(objectData))
-
-
-    // }
-    // reader.readAsDataURL(blog_image);  
-      
+  
     document.querySelector('.list_of_blogs').style.display = 'block'
     document.querySelector('.create_blog').style.display = 'none';
     readAll();
 }
 
-function generateId(){
-    return Math.random().toString().substring(2,10)
-}
 
 
-function edit(id){
-    
+
+
+
+async function editBlog(button){
+    console.log('clicked')
+    const blogId = button.id
     document.querySelector('.list_of_blogs').style.display = 'none'
     document.querySelector('.update_blog').style.display = 'block';
     document.querySelector('.add_blog').style.display = 'none'
+    // console.log(objectData)
+    console.log(blogId)
+    try{
+        const response = await fetch(`${SERVER_URL}/blogs/${blogId}`, {
+            method: 'GET', 
+            headers:{
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        const data = await response.json()
+        objectData = data.data
+        // console.log(objectData)
+    document.querySelector('.ublog_title').value = objectData.title
+    document.querySelector('.ublog_image').src = objectData.image
+    document.querySelector('.ublog_content').value = objectData.description
+    document.querySelector('.id').value = blogId
+    }
+    catch(err){
+        console.log(err)
+    }
     
-    
-    var obj = objectData.find(record => record !== record.id)
-    
-    document.querySelector('.ublog_title').value = obj.blog_title
-    document.querySelector('.ublog_image').src = obj.blog_image
-    document.querySelector('.ublog_content').value = obj.blog_content
-    document.querySelector('.id').value = obj.id
 
 }
 
-function update(){
-    var blog_image = document.querySelector('.ublog_image').value;
-    var blog_title = document.querySelector('.ublog_title').value;
-    var id = parseInt(document.querySelector('.id').value);
-    // alert(id)
-    var index  = objectData.findIndex(rec => rec.id = id)
-    objectData[index] = {id, blog_title, blog_image}
-    document.querySelector('.list_of_blogs').style.display = 'block'
-    document.querySelector('.update_blog').style.display = 'none';
-    readAll()
+async function update(){
+
+    const id = document.querySelector('.id').value;
+
+    let blog = {
+        title: document.querySelector('.ublog_title').value,
+        image: document.querySelector('.ublog_image').src,
+        description: document.querySelector('.ublog_content').value
+    }
+
+   
+    let updatedBlog = new FormData()
+        updatedBlog.append('image', blog.image)
+        updatedBlog.append('title', blog.title)
+        updatedBlog.append('description', blog.description)
+    
+       
+        
+    try{
+        const response = await fetch(`${SERVER_URL}/blogs/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(updatedBlog),
+        }
+        )
+        const data = await response.json()
+        if (response.ok){
+        document.querySelector('.list_of_blogs').style.display = 'block'
+        document.querySelector('.update_blog').style.display = 'none';
+        readAll()}
+        else{
+            console.log(response.status)
+        }
+        // try{
+        //     const response = await fetch(`${SERVER_URL}/blogs/${id}`, {
+        //         method: 'GET',
+        //         headers:{
+        //             'Authorization': `Bearer ${token}`
+        //         }
+        //     }).then(data => data.json()).then(data => console.log(data))
+            
+        // }catch(err){
+        //     console.log(err)
+        // }
+    }
+    catch{
+        console.log(err)
+    }
+
+    
 
 }
-function del(id){
-    objectData = objectData.filter(rec => rec.id !== id);
+async function deleteBlog(button){
+    
+    const id = button.id
+    if(token){
+        try{
+        const response = await fetch(`${SERVER_URL}/blogs/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+    }
+})
+if(response.ok){
     readAll()
+    console.log('Deleted')}
+}
+catch(err){ 
+    console.log(err)
+}
+    }
+    // objectData = objectData.filter(rec => rec.id !== id);
+    // readAll()
 }
