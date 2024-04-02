@@ -48,7 +48,7 @@ const showModal = async (message) =>{
 
 const info_showModal = async (message) =>{
     document.getElementById('info_modelMessage').textContent = message
-    console.log(message)
+    
     myModalInfo.style.display = 'block'
     setTimeout(() => {
         myModalInfo.style.display = 'none'
@@ -185,8 +185,10 @@ async function pushComment(){
         comment_div.classList.add('comments_given')    
         // console.log(comments)
         let comments_reversed = await comments.data.reverse()
-        
-        console.log(comments_reversed)
+        console.log(comments)
+        // console.log(comments_reversed)
+        // console.log(comments.message)
+        info_showModal(`Comment posted successfully!`)
         let comment_item = `
         <i class="fa fa-user-circle-o" aria-hidden="true" style="margin-top: 7px" ></i>
         <div class="comment_container">
@@ -236,9 +238,11 @@ async  function pushLikes(){
             n_likes.textContent = data.likes
             if (LikedBlog.message === 'your like was added'){
                 isLiked = true
+                info_showModal(`${LikedBlog.message}`)
             }
             else{
                 isLiked = false
+                info_showModal(`${LikedBlog.message}`)
             }
             console.log(isLiked)
             if(isLiked){
