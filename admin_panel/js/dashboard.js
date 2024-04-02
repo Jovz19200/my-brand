@@ -2,7 +2,7 @@ const SERVER_URL = `https://my-brand-be-sor4.onrender.com/api/v1`
 const myModalInfo = document.getElementById('myModal_info')
 const closeButtonInfo = document.querySelector('.close_btn')
 
-//  closing the popup modal
+
 closeButtonInfo.addEventListener('click', ()=>{
     myModalInfo.style.display = 'none'
 });
@@ -14,7 +14,7 @@ const info_showModal = async (message) =>{
     setTimeout(() => {
         myModalInfo.style.display = 'none'
     }, 3000);
-    // window.location.reload()
+    
 }
 
 const ReadDashboard = async () => {
