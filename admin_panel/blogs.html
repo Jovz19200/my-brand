@@ -5,11 +5,20 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/blogs.css">
+    <link rel="stylesheet" href="./css/global.css">
     <script src="https://kit.fontawesome.com/79b8b085c2.js" crossorigin="anonymous"></script>
     <title>Dashboard</title>
     
 </head>
 <body onload="readAll()">
+    <div id="myModal_info" class="modal">
+        <div class="modal-content">
+            <span class="close_btn close"> &times; </span>
+            <p id="info_modelMessage"></p>
+            
+        </div>
+    </div>
+    
     <div class="container">
         <div class="header">
             <img src="../images/Jehovanis_prof_pic-removebg-preview.png" alt="profile picture">
@@ -41,7 +50,12 @@
                         <div><h1 class="title">Blogs</h1></div>
                         <button onclick="create()" class="add_blog"><i class="fa fa-plus" aria-hidden="true"></i> Add Blog</button>
                     </div>
+                    <div id="loader-element" class="container-loader" style="display: flex; flex-direction: center;">
+                        <p></p>
+                        <p id="loader" class="loader"></p>
+                    </div>
                     <div class="list_of_blogs">
+                        
                         <table>
                             <div>
 
