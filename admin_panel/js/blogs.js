@@ -1,28 +1,40 @@
+const SERVER_URL = `https://my-brand-be-sor4.onrender.com/api/v1`
+// const  objectData = JSON.parse(localStorage.getItem('object')) || [];
+const token = localStorage.getItem('token')
 
-var objectData = JSON.parse(localStorage.getItem('object')) || [];
+async function readAll(){
 
-function readAll(){
+    let tabledata = document.querySelector('.data_table')
+    
+    try{
+        const response = await fetch(`${SERVER_URL}/blogs`)
+        const data = await response.json()
+        let objectData = data.data
+       
+        let elements = "";
+        objectData.map(record =>(
+            elements += `
+                <tr style="border-radius: 2px;">
+                    <td style="padding: 20px;"><img src="${record.image}" alt= "blog_Image_${record.id}" style="width: 20%; height: auto;"></td>
+                    <td style="padding: 10px;">${record.title}</td>
+                    <td style="padding: 10px;">
+                        <button onclick = {edit(${record._id})}><i class="fa fa-pencil" aria-hidden="true"> </i></button>
+                        <button onclick = {del(${record._id})}><i class="fa fa-trash" style="color: red;" aria-hidden="true"> </i></button>
+                    </td>
+    
+                </tr>
+            `
+        ))
+        tabledata.innerHTML = elements
+        
 
-    var tabledata = document.querySelector('.data_table')
- 
-   
-   
-    var elements = "";
+    }
+    catch(err){
+        console.log(err)
+    }
+  
 
-    objectData.map(record =>(
-        elements += `
-            <tr style="border-radius: 2px;">
-                <td style="padding: 20px;"><img src="${record.blog_image}" alt= "blog_Image_${record.id}" style="width: 20%; height: auto;"></td>
-                <td style="padding: 10px;">${record.blog_title}</td>
-                <td style="padding: 10px;">
-                    <button onclick = {edit(${record.id})}><i class="fa fa-pencil" aria-hidden="true"> </i></button>
-                    <button onclick = {del(${record.id})}><i class="fa fa-trash" style="color: red;" aria-hidden="true"> </i></button>
-                </td>
-
-            </tr>
-        `
-    ))
-    tabledata.innerHTML = elements
+    
 
 }
 
@@ -33,30 +45,54 @@ function create(){
 }
 
 
-function add(){
-    var blog_image = document.querySelector('.blog_image').files[0];
-    var blog_title = document.querySelector('.blog_title').value;
-    var blog_content = document.querySelector('.blog_content').value
-
-    const reader = new FileReader();
-      reader.onload = function(e) {
-       
-        var newObj = {
-            id: generateId(), 
-            blog_image: e.target.result, 
-            blog_title: blog_title,
-            blog_content: blog_content,
-            comments: [],
-            likes: 0,
-            isLiked: false
-
+async function add(){
+    try{
+        let blog = {
+         image : document.querySelector('.blog_image').files[0],
+         title : document.querySelector('.blog_title').value,
+         description : document.querySelector('.blog_content').value
         }
-        objectData.push(newObj);
-        localStorage.setItem('object', JSON.stringify(objectData))
-
-
+        const response = await fetch(`${SERVER_URL}/blogs`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(blog)
+    })
+    if (!response.ok){
+        console.log(response.status)
+    }else{
+    const data = await response.json()
+    console.log(blog)
+    console.log(data)
     }
-    reader.readAsDataURL(blog_image);  
+    }
+    catch(err){
+        console.log(err)
+    }
+
+
+    
+    // const reader = new FileReader();
+    //   reader.onload = function(e) {
+       
+    //     var newObj = {
+    //         id: generateId(), 
+    //         blog_image: e.target.result, 
+    //         blog_title: blog_title,
+    //         blog_content: blog_content,
+    //         comments: [],
+    //         likes: 0,
+    //         isLiked: false
+
+    //     }
+    //     objectData.push(newObj);
+    //     localStorage.setItem('object', JSON.stringify(objectData))
+
+
+    // }
+    // reader.readAsDataURL(blog_image);  
       
     document.querySelector('.list_of_blogs').style.display = 'block'
     document.querySelector('.create_blog').style.display = 'none';
