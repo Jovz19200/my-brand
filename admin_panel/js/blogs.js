@@ -4,7 +4,8 @@ const myModalInfo = document.getElementById('myModal_info')
 const closeButtonInfo = document.querySelector('.close_btn')
 const loader  = document.getElementById('loader-element')
 
-const editor = new FroalaEditor('#editor');
+
+// console.log(editor)
         // document.querySelector('button').addEventListener('click', () => {
         //     console.log(editor.html.get());
         // });
@@ -116,9 +117,11 @@ async function add(){
         let blog = {
          image : document.querySelector('.blog_image').files[0],
          title : document.querySelector('.blog_title').value,
+
         //  description : document.querySelector('.blog_content').value
-        description: editor.html.get()
-        }
+        description: quill.root.innerHTML
+            }
+            console.log(blog.description)
         console.log(blog)
         let newBlog = new FormData()
         newBlog.append('image', blog.image)
@@ -187,7 +190,11 @@ async function editBlog(button){
         // console.log(objectData)
     document.querySelector('.ublog_title').value = objectData.title
     document.querySelector('.ublog_image').src = objectData.image
-    document.querySelector('.ublog_content').value = objectData.description
+
+    quill2.root.innerHTML = objectData.description
+    console.log(document.getElementById('editor').innerHTML)
+    // editor.html.set(objectData.description)
+    // jQuery('#editor').FroalaEditor('html.set', objectData.description)
     document.querySelector('.id').value = blogId
     }
     catch(err){
@@ -203,11 +210,11 @@ async function update(){
     info_showModal('Updating a Blog...')
     loader.style.display = 'block'
     const id = document.querySelector('.id').value;
-
+    console.log(id)
     let blog = {
         title: document.querySelector('.ublog_title').value,
         image: document.querySelector('.ublog_image').src,
-        description: document.querySelector('.ublog_content').value
+        description: quill2.root.innerHTML
     }
 
    
