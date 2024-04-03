@@ -4,6 +4,11 @@ const myModalInfo = document.getElementById('myModal_info')
 const closeButtonInfo = document.querySelector('.close_btn')
 const loader  = document.getElementById('loader-element')
 
+const editor = new FroalaEditor('#editor');
+        // document.querySelector('button').addEventListener('click', () => {
+        //     console.log(editor.html.get());
+        // });
+
 closeButtonInfo.addEventListener('click', ()=>{
     myModalInfo.style.display = 'none'
 });
@@ -19,6 +24,36 @@ const info_showModal = async (message) =>{
 }
 
 async function readAll(){
+    const token = localStorage.getItem('token')
+    
+    try{
+        const  decodeJWT = (token) => {
+            const parts = token.split('.');
+            const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+
+            return { payload };
+        }
+        const userId = decodeJWT(token).payload.userId
+        const getUserById = async (userId) =>{
+            
+            const response = await fetch(`${SERVER_URL}/users/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            const data = await response.json()
+            return  {role : data.data.role, name: data.data.name, email: data.data.email};   
+        }
+        const user = await  getUserById(userId)
+        
+        document.getElementById('user_name').textContent = `Welcome, ${user.name}`
+        document.getElementById('user_email').textContent = `${user.email}`
+    }
+    catch(err){
+        console.log(err)
+    }
 
     let tabledata = document.querySelector('.data_table')
     
@@ -55,6 +90,7 @@ async function readAll(){
 
     }
     catch(err){
+        loader.style.display = 'none'
         console.log(err)
     }
   
@@ -80,8 +116,10 @@ async function add(){
         let blog = {
          image : document.querySelector('.blog_image').files[0],
          title : document.querySelector('.blog_title').value,
-         description : document.querySelector('.blog_content').value
+        //  description : document.querySelector('.blog_content').value
+        description: editor.html.get()
         }
+        console.log(blog)
         let newBlog = new FormData()
         newBlog.append('image', blog.image)
         newBlog.append('title', blog.title)
@@ -184,13 +222,13 @@ async function update(){
         const response = await fetch(`${SERVER_URL}/blogs/${id}`, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify(updatedBlog),
+            body: updatedBlog,
         }
         )
         const data = await response.json()
+        console.log(data)
         if (response.ok){
         info_showModal('Blog Updated Successfully')
         loader.style.display = 'none'

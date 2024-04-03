@@ -4,7 +4,7 @@ const pre_btn = [...document.querySelectorAll('.pre_button')];
 const SendQuery = document.getElementById('send_query')
 const myModalInfo = document.getElementById('myModal_info')
 const closeButtonInfo = document.querySelector('.close_btn')
-
+const MyModelInfo = document.getElementById('myModal_info')
 
 blog_container.forEach((item, i)=> {
     let containerDimensions = item.getBoundingClientRect();
@@ -21,7 +21,13 @@ blog_container.forEach((item, i)=> {
 })
 
 
-
+const Info_showModal =(message) =>{
+    document.getElementById('info_modelMessage').textContent = message
+    myModalInfo.style.display = 'block'
+    setTimeout(() =>{
+        myModalInfo.style.display = 'none'
+    }, 5000)
+}
 
 // displaying blogs from server
 
@@ -91,6 +97,7 @@ try{
 }
 catch(error){
     console.log(error)
+    Info_showModal(`${error}`)
     loader.style.display = 'none'
 }
 

@@ -1,16 +1,17 @@
 
-var urlParams = new URLSearchParams(window.location.search)
-var blogId = urlParams.get('id')
+const urlParams = new URLSearchParams(window.location.search)
+let  blogId = urlParams.get('id')
 
-var SERVER_URL = `https://my-brand-be-sor4.onrender.com/api/v1`
-var SERVER_SINGLE_BLOG = `https://my-brand-be-sor4.onrender.com/api/v1/blogs/${blogId}`
+const SERVER_URL = `https://my-brand-be-sor4.onrender.com/api/v1`
+const SERVER_SINGLE_BLOG = `https://my-brand-be-sor4.onrender.com/api/v1/blogs/${blogId}`
 
 
-var blog_image = document.querySelector('.blog_image img')
-var blog_title = document.querySelector('.blog_title h1')
+const blog_image = document.querySelector('.blog_image img')
+const  blog_title = document.querySelector('.blog_title h1')
+const blog_description = document.querySelector('.blog_description')
 
-var post_comment = document.querySelector('.post_comment')
-var all_comments = document.querySelector('.all_comments')
+let post_comment = document.querySelector('.post_comment')
+let all_comments = document.querySelector('.all_comments')
 
 
 
@@ -66,6 +67,7 @@ try{
     
     blog_image.src = objectData.image
     blog_title.textContent = objectData.title
+    blog_description.innerHTML = objectData.description
     
 
 // Retrieve comments()
@@ -77,7 +79,7 @@ try{
         const data = await response.json()
         objectData.comments = data.data
 
-        // console.log(objectData.comments)
+        
         
         if(objectData.comments == 0){
             n_comments.textContent = 0
@@ -183,11 +185,9 @@ async function pushComment(){
 
         const comment_div = document.createElement('div')
         comment_div.classList.add('comments_given')    
-        // console.log(comments)
         let comments_reversed = await comments.data.reverse()
-        console.log(comments)
-        // console.log(comments_reversed)
-        // console.log(comments.message)
+      
+        
         info_showModal(`Comment posted successfully!`)
         let comment_item = `
         <i class="fa fa-user-circle-o" aria-hidden="true" style="margin-top: 7px" ></i>
@@ -234,7 +234,7 @@ async  function pushLikes(){
             const resp = await fetch(`${SERVER_SINGLE_BLOG}/likes`)
             const data = await resp.json()
             const LikedBlog = await response.json()
-            // console.log(LikedBlog)
+           
             n_likes.textContent = data.likes
             if (LikedBlog.message === 'your like was added'){
                 isLiked = true
@@ -244,7 +244,7 @@ async  function pushLikes(){
                 isLiked = false
                 info_showModal(`${LikedBlog.message}`)
             }
-            console.log(isLiked)
+            
             if(isLiked){
                 fa_heart.style.color = '#85C249'
                 
