@@ -67,7 +67,7 @@ const info_showModal = async (message) =>{
 const load_logging = (message) =>{
     setTimeout(() => {
         login_button.textContent = message
-    }, 1000)
+    }, 0)
 }
 
 async function validate_login(){

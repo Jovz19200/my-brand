@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="./css/global.css">
     <script src="https://kit.fontawesome.com/79b8b085c2.js" crossorigin="anonymous"></script>
     <title>Dashboard</title>
+
+    <!-- Floraa -->
+    <!-- floara editor plugins -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.6/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.6/css/froala_style.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.6/js/froala_editor.pkgd.min.js"></script>
     
 </head>
 <body onload="readAll()">
@@ -21,10 +28,10 @@
     
     <div class="container">
         <div class="header">
-            <img src="../images/Jehovanis_prof_pic-removebg-preview.png" alt="profile picture">
+            <img src="../images/unknown_admin-removebg-preview.png" alt="profile picture">
             <div class="user_info">
-                <h3>Niyogisubizo H. Johovanis</h3>
-                <h4>gisubizo.jovan@gmail.com</h4>
+                <h3 id="user_name"></h3>
+                <h4 id = "user_email"></h4>
             </div>
             <div class="fa-bar"><i class="fa-solid fa-bars"></i></div>
         </div>
@@ -89,14 +96,14 @@
                         </div>
                         </div>
 
-                        <textarea class="blog_content" name="content" placeholder="Write your blog content here"></textarea>
-                        <div class="buttons">
-                        <div class="formatting-buttons">
+                        <textarea id ="editor" class="blog_content" name="content" placeholder="Write your blog content here"></textarea>
+                        <!-- <div class="buttons"> -->
+                        <!-- <div class="formatting-buttons">
                           <button type="button" data-action="bold"><b>B</b></button>
                           <button type="button" data-action="italic"><i>I</i></button>
                           <button type="button" data-action="underline"><u>U</u></button>
 
-                        </div>
+                        </div> -->
                         <button onclick="add()" type="button">Publish Blog</button>
                         </div>
                         
@@ -116,8 +123,9 @@
                             color: white;
                             outline: none;
                             padding: 3px;">
-                            <div class="image_flex"><label for="imageInput">Blog Image</label>
-                            <input type="file" id="imageInput" class="ublog_image" accept="image/*">
+                            <div class="image_flex">
+                                <label for="imageInput">Blog Image</label>
+                                <input type="file" id="imageInput" class="ublog_image" accept="image/*">
                             </div>
                         </div>
 
@@ -140,5 +148,10 @@
         </div>
     </div>
     <script src="./js/blogs.js"></script>   
+
+    <script>
+        
+    </script>
+
 </body>
 </html>
