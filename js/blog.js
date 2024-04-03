@@ -69,7 +69,7 @@ try{
     blog_title.textContent = objectData.title
     blog_description.innerHTML = objectData.description
     
-
+    console.log(objectData)
 // Retrieve comments()
     
     
