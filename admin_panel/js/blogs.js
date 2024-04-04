@@ -5,11 +5,6 @@ const closeButtonInfo = document.querySelector('.close_btn')
 const loader  = document.getElementById('loader-element')
 
 
-// console.log(editor)
-        // document.querySelector('button').addEventListener('click', () => {
-        //     console.log(editor.html.get());
-        // });
-
 closeButtonInfo.addEventListener('click', ()=>{
     myModalInfo.style.display = 'none'
 });
@@ -54,6 +49,7 @@ async function readAll(){
     }
     catch(err){
         console.log(err)
+        info_showModal(`${err}`)
     }
 
     let tabledata = document.querySelector('.data_table')
@@ -93,6 +89,7 @@ async function readAll(){
     catch(err){
         loader.style.display = 'none'
         console.log(err)
+        info_showModal(`${err}`)
     }
   
 
@@ -121,15 +118,13 @@ async function add(){
         //  description : document.querySelector('.blog_content').value
         description: quill.root.innerHTML
             }
-            console.log(blog.description)
-        console.log(blog)
+           
         let newBlog = new FormData()
         newBlog.append('image', blog.image)
         newBlog.append('title', blog.title)
         newBlog.append('description', blog.description)
 
       
-        console.log(blog)
         const response = await fetch(`${SERVER_URL}/blogs`, {
             method: 'POST',
             headers: {
@@ -141,9 +136,10 @@ async function add(){
     if (!response.ok){
         info_showModal(`${response.status}`)
         loader.style.display = 'none'
-        // console.log(response.status)
-        
-    }else{
+       
+    }
+    else
+    {
     const data = await response.json()
     loader.style.display = 'none'
     info_showModal('Blog Created Successfully')
@@ -187,14 +183,13 @@ async function editBlog(button){
             loader.style.display = 'none'
             info_showModal('Successfully set')
         }
-        // console.log(objectData)
+   
     document.querySelector('.ublog_title').value = objectData.title
     document.querySelector('.ublog_image').src = objectData.image
 
     quill2.root.innerHTML = objectData.description
-    console.log(document.getElementById('editor').innerHTML)
-    // editor.html.set(objectData.description)
-    // jQuery('#editor').FroalaEditor('html.set', objectData.description)
+   
+    
     document.querySelector('.id').value = blogId
     }
     catch(err){
@@ -210,7 +205,7 @@ async function update(){
     info_showModal('Updating a Blog...')
     loader.style.display = 'block'
     const id = document.querySelector('.id').value;
-    console.log(id)
+    
     let blog = {
         title: document.querySelector('.ublog_title').value,
         image: document.querySelector('.ublog_image').src,
@@ -235,7 +230,6 @@ async function update(){
         }
         )
         const data = await response.json()
-        console.log(data)
         if (response.ok){
         info_showModal('Blog Updated Successfully')
         loader.style.display = 'none'
@@ -243,7 +237,7 @@ async function update(){
         document.querySelector('.update_blog').style.display = 'none';
         readAll()}
         else{
-            console.log(response.status)
+            
             info_showModal(`${response.status}`)
             loader.style.display = 'none'
         }

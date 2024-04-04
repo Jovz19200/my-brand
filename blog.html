@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/global.css" />
     <title>My blog</title>
+
 </head>
 
-<body style="background-color: #4E3F3F;">
+<body style="background-color: #4E3F3F;" >
     
     <div class="mob_nav">
         <h2 class="title"><span class="span-4"><a href="index.html#home">Jehovanis</a></span> N.</h2> 
@@ -39,83 +40,7 @@
 
         <article id="article" class="blog_content">
             <!-- <article> -->
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close"> &times; </span>
-                        <p id="modelMessage">Please sign in to post a comment</p>
-                        <button id="signInButton">Sign In</button>
-                    </div>
-                </div>
-                <!-- Info popup -->
-                <div id="myModal_info" class="modal">
-                    <div class="modal-content">
-                        <span class="close_btn close"> &times; </span>
-                        <p id="info_modelMessage"></p>
-                        
-                    </div>
-                </div>
-                <div class="article_head">
-                    <!-- Blog titles here -->
-                    <div class="blog_image">
-                        <img src="" alt="Blog Image">
-                        <div id="loader-element-img" class="container-loader">
-                            <p>Image Loading ...</p>
-                            <div id="loader" class="loader"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog_title">
-                    <h1></h1>
-                   
-                </div>
-                <div class="blog_description">
-
-                </div>
-                
-                <!-- <p>
-                    Here I bring you some widely known stacks like  MERN, LAMP, Python/Django, Flutterwith Dark and MEVN stacks, so if you are a complete beginner looking  a career in software or web development, you will have to choose a stack from the suggestions below.
-                </p><br />
-                <ul>
-                    <li><p><span>MERN Stack</span>: Popular with great online resources, JavaScript skills apply across all 
-                        layers, React has a gentle learning curve, and Node.js offers flexibility</p></li>
-                    <li><p>
-                        <span>Python Stack</span>: Python is known for its readability, Django simplifies web development     Flask is flexible for smaller projects, and data science opportunities abound.</p></li>
-                    <li><p><span>LAMP Stack</span>: Established and well-documented, PHP is beginner-friendly,widespread usage means abundant support, and MySQL is a commondatabase choice</p></li>
-                    </ul> -->
-
-
-            <div class="reaction_section">
-                <div class="reaction_status">
-                    <ul>
-                        <!-- <li>Published 10/02/2024</li> -->
-                        <li>1.1k Views</li>
-                        <li><span class="n_comments"></span> comments</li>
-                        <li><span class="n_likes"></span> likes</li> 
-                        <li class="like_icon"><i class="fa-regular fa-heart" id="likeButton" aria-hidden="true" onclick="pushLikes()"></i></li>
-                    </ul>
-                </div>
-
-
-                <div class="comments">
-                    <h6><i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <button type="submit">Add your comment</button>
-                    </h6>
-                    <div class="add_comment">
-                        <textarea class="comment_area" rows="4" cols="30" name="message" placeholder="Enter your Comment here..."></textarea>
-                        
-                    </div>
-                    <!-- post comment button -->
-                    <button class="post_comment" type="submit" onclick="pushComment()" style = "border: 1px white solid; border-radius: 5px;">Post Comment</button>
-
-                    <div class="all_comments">
-                        <div id="loader-element-cmt" class="container-loader">
-                            <p>Waiting 🧐 ...</p>
-                            <div id="loader" class="loader"></div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div> 
+              
 
         </article>
 
@@ -144,6 +69,15 @@
                 </div>
         </div>
     </footer>
-<script src="./js/blog.js"></script>
+    
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<!-- Load React DOM. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+<!-- Load Babel for JSX. -->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<!-- <script src="./js/blog.js"></script> -->
+<script src="./js/blog.jsx" type="text/babel"></script>
 </body>
 </html>

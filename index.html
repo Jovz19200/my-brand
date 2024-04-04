@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/global.css" />
     <title>Personal website</title>
+
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+
 </head>
 <body>
     
@@ -194,10 +201,11 @@
             <p>Waiting for blogs ...</p>
             <p id="loader" class="loader"></p>
         </div>
-        <div class="flex_blog">
+        <div class="flex_blog" id="react-root">
             
            <!-- blogs are to be fitted in this space -->
         </div>
+       
     </div>
 </section>
     <!-- Contact section -->
@@ -272,7 +280,11 @@
                 </div>
         </div>
     </footer>
-    <script src="./js/landing.js"></script>
+    <!-- <script src="./js/landing.js"></script> -->
+    <script type="text/babel" src="./js/landing.jsx"></script>
+    <script type="text/babel">
+       
+    </script>
     
 </body>
 </html>
