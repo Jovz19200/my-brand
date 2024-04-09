@@ -6,6 +6,12 @@ const myModalInfo = document.getElementById('myModal_info')
 const closeButtonInfo = document.querySelector('.close_btn')
 const MyModelInfo = document.getElementById('myModal_info')
 
+document.getElementById('barsIcon').addEventListener('click', ()=>{
+    console.log('clicked')
+    const NavLinks  = document.getElementById('mobileNav')
+    NavLinks.classList.toggle('show')
+})
+
 blog_container.forEach((item, i)=> {
     let containerDimensions = item.getBoundingClientRect();
     let containerWidth = containerDimensions.width;
