@@ -27,6 +27,20 @@ const closeButton = document.querySelector('.close')
 const closeButtonInfo = document.querySelector('.close_btn')
 const modalMessage = document.getElementById('modalMessage')
 
+document.getElementById('barsIcon').addEventListener('click', ()=>{
+
+    const NavLinks  = document.getElementById('mobileNav')
+    NavLinks.classList.toggle('show')
+})
+
+const mobileNavItems = document.querySelectorAll('#mobileNav a')
+mobileNavItems.forEach((item) =>{
+    item.addEventListener('click', ()=>{
+        const NavLinks  = document.getElementById('mobileNav')
+        NavLinks.classList.remove('show')
+    })
+})
+
 
 signInButton.addEventListener('click', ()=>{
     window.location.href = '/my-brand/admin_panel/login.html'
@@ -69,7 +83,7 @@ try{
     blog_title.textContent = objectData.title
     blog_description.innerHTML = objectData.description
     
-    console.log(objectData)
+   
 // Retrieve comments()
     
     
@@ -112,7 +126,7 @@ try{
         load_comment.style.display = 'none'
     }
 catch(error){
-    console.log(error)
+    
     load_comment.style.display = 'none'
     load_image.style.display = 'none'
 }   
@@ -131,14 +145,16 @@ catch(error){
         n_likes.textContent = likesData.length
     }
     catch(error){
-        console.log(error)
+        // console.log(error)
+        info_showModal(`An error occured while fetching likes: ${error}`    )
     }
 
 
 
 }
 catch(error){
-    console.log(error)
+    // console.log(error)
+    info_showModal(`An error occured while fetching blog: ${error}`    )
     load_comment.style.display = 'none'
     load_image.style.display = 'none'
 }
@@ -254,7 +270,8 @@ async  function pushLikes(){
             
         }
         catch{
-            console.log(error)
+            // console.log(error)
+            info_showModal(`An error occured while posting like: ${error}`)
         }
         
     }
