@@ -9,6 +9,16 @@ let fullname_error = document.getElementById('fullname_error');
 let email_error = document.getElementById('email_error')
 let password_error = document.getElementById('password_error')
 let confirm_error = document.getElementById('confirm_error')
+const myModalInfo = document.getElementById('myModal_info')
+const closeButtonInfo = document.querySelector('.close_btn')
+
+const info_showModal = async (message) =>{
+    document.getElementById('info_modelMessage').textContent = message
+    myModalInfo.style.display = 'block'
+    setTimeout( () =>{
+        myModalInfo.style.display = 'none'
+    }, 5000)
+}
 
 
 password.addEventListener('textInput', password_Verify);
@@ -91,7 +101,11 @@ function confirm_Verify(){
 
    
 
-
+    const redirect = (url) =>{
+        setTimeout( () =>{
+            window.location.href = url
+        },2000)
+    }
     
     
     const form = document.getElementById('signUp_form')
@@ -108,6 +122,7 @@ function confirm_Verify(){
     // }
 
     const  validateSignUp = async () =>{
+        document.getElementById('signUP').textContent = 'Signing up...'
         const name= document.getElementById('fullname').value;
         const email =  document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -117,7 +132,7 @@ function confirm_Verify(){
             email: email,
             password: password
         }
-        console.log(user)
+        
         try{
             const response = await fetch(REGISTER_USER,{
                 method: 'POST',
@@ -127,9 +142,20 @@ function confirm_Verify(){
                 body: JSON.stringify(user)
             })
             const data = await response.json()
-            console.log(data)
+            if(data.status === 'success'){
+                info_showModal('User created successfully')
+                document.getElementById('signUP').textContent = 'Sign Up'
+                redirect('login.html')
+            }
+            else{
+                info_showModal(data.message)
+                document.getElementById('signUP').textContent = 'Sign Up'
+            }
+            // console.log(data)
         }catch(error){
             console.log(error)
+            info_showModal(`Error: ${error}`)
+            document.getElementById('signUP').textContent = 'Sign Up'
         }
         name.value = ''
         email.value  = ''
