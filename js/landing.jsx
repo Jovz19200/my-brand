@@ -63,6 +63,7 @@ function TestREACT(){
             }))
 
             setBlogs(blogData)
+            loader.style.display = 'none'
         };
         fetchBlog()
     },[])
@@ -103,8 +104,7 @@ function TestREACT(){
                     </div>
                 ))}
             </div>
-            <div className='nxt_button'></div>
-            <div className='pre_button'></div>
+            
             <div id='myModal_info' className='modal'>
                 <div className='modal-content'>
                     <span className='close_btn'>&times;</span>

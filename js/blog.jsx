@@ -1,170 +1,251 @@
 function SingleBlog() {
-    const urlParams = new URLSearchParams(window.location.search)
-    let  blogId = urlParams.get('id')
-    const SERVER_URL = `https://my-brand-be-sor4.onrender.com/api/v1`
-const SERVER_SINGLE_BLOG = `https://my-brand-be-sor4.onrender.com/api/v1/blogs/${blogId}`
+
+  const urlParams = new URLSearchParams(window.location.search);
+  let blogId = urlParams.get("id");
+  const SERVER_SINGLE_BLOG = `https://my-brand-be-sor4.onrender.com/api/v1/blogs/${blogId}`
+
+  const [load_image, setLoadImage] = React.useState(false)
+  const [load_comment, setLoadComment] = React.useState(false)
+  const [blog, setBlog] = React.useState([])
+  const [comments, setComments] = React.useState([])
+  const [likes, setLikes] = React.useState([])
+  const [comment, setComment] = React.useState('')
+  const [message, setMessage] = React.useState('')
+  const [popup, setPopup] = React.useState(false)
 
 
-const blog_image = document.querySelector('.blog_image img')
-const  blog_title = document.querySelector('.blog_title h1')
-const blog_description = document.querySelector('.blog_description')
+  const myModal = document.getElementById('myModal')
+    const myModalInfo = document.getElementById('myModal_info')
+    const signInButton =  document.getElementById('signInButton')
+    const closeButton = document.querySelector('.close')
+    const closeButtonInfo = document.querySelector('.close_btn')
+    
+    const handleCommentChange = (event) => {
+        setComment(event.target.value);
+        console.log(comment)
+    };
 
-let post_comment = document.querySelector('.post_comment')
-let all_comments = document.querySelector('.all_comments')
+    const showModal = async (message) =>{
+        setMessage(message)
+        setPopup(true)
+        setTimeout(() => {
+            setPopup(false)
+        }, 5000);
+    }
 
+    // const info_showModal = async (message) =>{
+    //     document.getElementById('info_modelMessage').textContent = message
+        
+    //     myModalInfo.style.display = 'block'
+    //     setTimeout(() => {
+    //         myModalInfo.style.display = 'none'
+    //     }, 5000);
+    // }
 
+  const token = localStorage.getItem('token')
+    
 
-let objectData = []
-const n_likes = document.querySelector('.n_likes')
-const load_image = document.getElementById('loader-element-img')
-const load_comment = document.getElementById('loader-element-cmt')
-const n_comments = document.querySelector('.n_comments')
-const myModal = document.getElementById('myModal')
-const myModalInfo = document.getElementById('myModal_info')
-const signInButton =  document.getElementById('signInButton')
-const closeButton = document.querySelector('.close')
-const closeButtonInfo = document.querySelector('.close_btn')
-const modalMessage = document.getElementById('modalMessage')
+  const fetchSingleBlog = async () => {
+      setLoadImage(true)
+      const response = await fetch(SERVER_SINGLE_BLOG);
+      const data = await response.json();
+   
+      setBlog(data.data)
+      setLoadImage(false)
+    };
+ 
 
+  React.useEffect(() => { 
+    fetchSingleBlog();
+    
+  }, []);
 
-const [likes, setLikes] = React.useState([ ])
-const [comments, setComments] = React.useState([ ])
-const [blog, setBlog] = React.useState([ ])
-
-signInButton.addEventListener('click', ()=>{
-    window.location.href = '/my-brand/admin_panel/login.html'
-});
-closeButton.addEventListener('click', ()=>{
-    myModal.style.display = 'none'
-});
-
-closeButtonInfo.addEventListener('click', ()=>{
-    myModalInfo.style.display = 'none'
-});
-
-const showModal = async (message) =>{
-    document.getElementById('modelMessage').textContent = message
-    myModal.style.display = 'block'
-    setTimeout(() => {
-        myModal.style.display = 'none'
-    }, 5000);
+  // Retrieve comments 
+  const fetchComments = async() =>{
+     setLoadComment(true)
+    const resp_comments = await fetch(`${SERVER_SINGLE_BLOG}/comments`)
+    const commentsData = await resp_comments.json()
+    const comments = commentsData.data
+   
+    setComments(comments)
+    
+  
+    setLoadComment(false)
 }
 
-const info_showModal = async (message) =>{
-    document.getElementById('info_modelMessage').textContent = message
+  React.useEffect(() => {
+    fetchComments()
+  },[])
+
+//   Retrieve likes
+const fetchLikes = async () =>{
+    const resp_likes = await fetch(`${SERVER_SINGLE_BLOG}/likes`)
+    const likesData = await resp_likes.json()
+    const likes = likesData.data
     
-    myModalInfo.style.display = 'block'
-    setTimeout(() => {
-        myModalInfo.style.display = 'none'
-    }, 5000);
+    setLikes(likes)
+    }
+React.useEffect(() => {
+fetchLikes()
+},[])
+
+// Posting comments
+
+const pushComment = async () =>{
+    const comment = document.querySelector('.comment_area').value
+    const postComment = await fetch(`${SERVER_SINGLE_BLOG}/comments`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({content: comment})
+})
+
+setComment('')
 }
-    
 
+// Posting likes
 
-
-    React.useEffect( () =>{
-        const fetchSingleBlog = async() =>{
+const pushLikes = async () =>{
+    const postLikes = await fetch(`${SERVER_SINGLE_BLOG}/likes`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`}
+        })
+        const data = await postLikes.json()
         
-            load_image.style.display = 'block'
-            const response = await fetch(SERVER_SINGLE_BLOG)
-            const data = await response.json()
-            console.log(data)
-            objectData = data.data
-            blog_image.src = objectData.image
-            blog_title.textContent = objectData.title
-            blog_description.innerHTML = objectData.description
-            load_image.style.display = 'none'
-            n_likes.textContent = objectData.likes.length
-            n_comments.textContent = objectData.comments.length
-            all_comments.innerHTML = ''
-            objectData.comments.forEach( comment =>{
-                let comment_div = document.createElement('div')
-                comment_div.className = 'comment'
-                comment_div.innerHTML = `
-                <h6>${comment.name}</h6>
-                <p>${comment.comment}</p>
-                `
-                all_comments.appendChild(comment_div)
-            })
-        
-        fetchSingleBlog();
-    }},[]
-    
-    )
 
+}
 
-    
-  return(<div>
-    <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close"> &times; </span>
-                        <p id="modelMessage">Please sign in to post a comment</p>
-                        <button id="signInButton">Sign In</button>
-                    </div>
-                </div>
-               
-                <div id="myModal_info" class="modal">
-                    <div class="modal-content">
-                        <span class="close_btn close"> &times; </span>
-                        <p id="info_modelMessage"></p>
-                        
-                    </div>
-                </div>
-                <div class="article_head">
-                  
-                    <div class="blog_image">
-                        <img src="" alt="Blog Image" />
-                        <div id="loader-element-img" class="container-loader">
-                            <p>Image Loading ...</p>
-                            <div id="loader" class="loader"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog_title">
-                    <h1></h1>
-                   
-                </div>
-                <div class="blog_description">
+React.useEffect(() => {
+    fetchLikes()
 
-                </div>
+})
+
+  return (
+    <div>
+         <div id="myModal" className="modal">
+            <div className="modal-content">
+                <span className="close"> &times; </span>
+                <p id="modelMessage">Please sign in to post a comment</p>
+                <button id="signInButton">Sign In</button>
+            </div>
+        </div>
+       
+        <div id="myModal_info" className="modal">
+            <div className="modal-content">
+                <span className="close_btn close"> &times; </span>
+                <p id="info_modelMessage"></p>
                 
-               
+            </div>
+        </div>
 
-            <div class="reaction_section">
-                <div class="reaction_status">
-                    <ul>
-                        
-                        <li>1.1k Views</li>
-                        <li><span class="n_comments"></span> comments</li>
-                        <li><span class="n_likes"></span> likes</li> 
-                        <li class="like_icon"><i class="fa-regular fa-heart" id="likeButton" aria-hidden="true" onclick="pushLikes()"></i></li>
-                    </ul>
-                </div>
+      <div className="article_head">
+        <div className="blog_image">
+          <img src={blog.image} alt="Blog Image" />
+          {load_image? (<div id="loader-element-img" className="container-loader">
+            <p>Image Loading ...</p>
+            <div id="loader" className="loader"></div>
+          </div>): (<div></div>)
+}         
+        </div>
+      </div>
+      <div className="blog_title">
+        <h1>{blog.title}</h1>
+      </div>
+      <div
+          className="blog_description"
+          dangerouslySetInnerHTML={{ __html: blog.description }}
+        ></div>
 
 
-                <div class="comments">
-                    <h6><i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <button type="submit">Add your comment</button>
-                    </h6>
-                    <div class="add_comment">
-                        <textarea class="comment_area" rows="4" cols="30" name="message" placeholder="Enter your Comment here..."></textarea>
-                        
-                    </div>
-                   
-                    <button class="post_comment" type="submit" onclick="pushComment()" style = "border: 1px white solid; border-radius: 5px;">Post Comment</button>
 
-                    <div class="all_comments">
-                        <div id="loader-element-cmt" class="container-loader">
-                            <p>Waiting 🧐 ...</p>
-                            <div id="loader" class="loader"></div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+      <div className="reaction_section">
+        <div className="reaction_status">
+          <ul>
+            <li>1.1k Views</li>
+            <li>
+              <span className="n_comments">{comments.length}</span> comments
+            </li>
+            <li>
+              <span className="n_likes">{likes.length}</span> likes
+            </li>
            
+            <li className="like_icon">
+              <i
+                className="fa-regular fa-heart"
+                id="likeButton"
+                aria-hidden="true"
+                onClick={pushLikes}
+              ></i>
+            </li>
+          </ul>
+        </div>
 
+        <div className="comments">
+          <h6>
+            <i className="fa fa-comment-o" aria-hidden="true"></i>
+            <button type="submit">Add your comment</button>
+          </h6>
+          <div className="add_comment">
+            <textarea
+            value={comment}
+             onChange={handleCommentChange}
+              className="comment_area"
+              rows="4"
+              cols="30"
+              name="message"
+              placeholder="Enter your Comment here..."
+            ></textarea>
+          </div>
+         
+          <button
+            id="post_comment"
+            type="submit"
+            value={comment}
+            style={{border: '1px white solid', borderRadius: '5px'}}
+            onClick={pushComment}
+          >
+            Post Comment
+          </button>
+
+          <div className="all_comments">
+            {load_comment? (<div id="loader-element-cmt" className="container-loader">
+              <p>Waiting 🧐 ...</p>
+              <div id="loader" className="loader"></div> </div>) : (<div> 
+                {
+                    comments.map((comment, i) => (<div key={i} className="comments_given">
+                    <i className="fa fa-user-circle-o" aria-hidden="true" style={{marginT: "7px"}} ></i>
+                    <div key={i} className="comment_container">
+                    
+                        <div style={{borderBottom: '#FFFFFF 1px solid'}}>
+                            <h4>{comment.name}</h4>
+                            <p>{comment.content}</p>
+                        </div>
+                        </div></div>
+                    ))
+                }
+                <i className="fa fa-user-circle-o" aria-hidden="true" style={{marginT: "7px"}} ></i>
+                <div className="comment_container">
+                    <div style={{borderBottom: "#FFFFFF 1px solid"}}>
+                    <h4>{comments.name}</h4>
+                    <p>{comments.content}</p>
+                    </div>
                 </div>
+                </div>
+                ) }
+            
+              
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    
   );
 }
 
-ReactDOM.render(<SingleBlog />, document.getElementById('article'))
+ReactDOM.render(<SingleBlog />, document.getElementById("article"));
