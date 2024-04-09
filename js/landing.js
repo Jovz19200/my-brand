@@ -7,9 +7,17 @@ const closeButtonInfo = document.querySelector('.close_btn')
 const MyModelInfo = document.getElementById('myModal_info')
 
 document.getElementById('barsIcon').addEventListener('click', ()=>{
-    console.log('clicked')
+    
     const NavLinks  = document.getElementById('mobileNav')
     NavLinks.classList.toggle('show')
+})
+
+const mobileNavItems = document.querySelectorAll('#mobileNav a')
+mobileNavItems.forEach((item) =>{
+    item.addEventListener('click', ()=>{
+        const NavLinks  = document.getElementById('mobileNav')
+        NavLinks.classList.remove('show')
+    })
 })
 
 blog_container.forEach((item, i)=> {
@@ -68,7 +76,8 @@ try{
                             return{comments: comments, likes: likes}
             }
             catch(err){
-                console.log(err)
+                // console.log(err)
+                info_showModal(`${err}`)
             }
             }
         const {comments, likes } = await blog_stats(item)
@@ -102,7 +111,7 @@ try{
 })
 }
 catch(error){
-    console.log(error)
+    // console.log(error)
     Info_showModal(`${error}`)
     loader.style.display = 'none'
 }
@@ -150,11 +159,11 @@ const PostQuery = async () =>{
         if(data.status === 'success'){
             
             info_showModal('Query Sent Successfully')
-            console.log(query)
+           
             query.name.value = ''
             query.email.value = ''
             query.message = ''
-            console.log(query)
+            
         }
         else{
            
@@ -167,7 +176,7 @@ const PostQuery = async () =>{
     }
     catch(err){
         info_showModal('Query not sent')
-        console.log(err)
+        // console.log(err)
         SendQuery.textContent = 'Send'
     }
 

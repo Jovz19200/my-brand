@@ -92,7 +92,7 @@
 /* Show the mobile navigation links when the 'show' class is added */
 #mobileNav.show {
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 100%;
